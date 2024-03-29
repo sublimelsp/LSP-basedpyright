@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "Preferences: LSP-basedpyright Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/LSP-basedpyright/LSP-basedpyright.sublime-settings",
+            "default": "// Settings in here override those in \"LSP-basedpyright/LSP-basedpyright.sublime-settings\"\n\n{\n\t$0\n}\n",
+        },
+    },
+    {
+        "caption": "LSP-basedpyright: Create Basedpyright Configuration File",
+        "command": "lsp_basedpyright_create_configuration",
+    },
+]

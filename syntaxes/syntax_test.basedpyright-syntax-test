@@ -1,0 +1,244 @@
+# SYNTAX TEST "basedpyright.sublime-syntax"
+
+(class) ClassName
+# ^^^^ storage.type
+#       ^^^^^^^^^ entity.name.class
+
+class ClassName(foo: int, /, *args: Any, **kwargs: Any)
+# ^^^ keyword.declaration.class
+#     ^^^^^^^^^ entity.name.class
+#               ^^^ variable.parameter
+#                  ^ punctuation.separator.annotation
+#                    ^^^ support.type
+#                         ^ storage.modifier.positional-args-only
+#                            ^ keyword.operator.unpacking.sequence
+#                             ^^^^ variable.parameter
+#                                 ^ punctuation.separator.annotation
+#                                   ^^^ support.class
+#                                      ^ punctuation.separator
+#                                        ^^ keyword.operator.unpacking.mapping
+#                                          ^^^^^^ variable.parameter
+#                                                  ^^^ support.class
+
+(function) def functionName(self: Self@PanelManager) -> (Any | None)
+#                                 ^^^^^^^^^^^^^^^^^ meta.function.parameters.annotation.python meta.type.python
+#                                 ^^^^ support.class.typing.python
+#                                     ^ punctuation.accessor.python
+#                                      ^^^^^^^^^^^^ meta.generic-name.python
+#                                                       ^^^^^^^^^^^^ meta.function.return-type.python meta.type.python meta.group.python
+#                                                       ^ punctuation.section.group.begin.python
+#                                                        ^^^ support.class
+#                                                            ^ keyword.operator.logical.union
+#                                                              ^^^^ constant.language.null.python
+#                                                                  ^ punctuation.section.group.end.python
+
+(function) def functionName(cls: Type[Self@ParentName], /, key: str, default: Any | None = None) -> Any
+# <- meta.parens.python punctuation.section.parens.begin.python
+#^^^^^^^^^ meta.parens.python
+#          ^^^^^^^^^^^^^^^^ meta.function.python
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters
+#                                                                                               ^ meta.function.python
+#                                                                                                ^^^^^^ meta.function.return-type.python
+#^^^^^^^^ storage.type.python
+#        ^ punctuation.section.parens.end.python
+#                           ^^^ variable.parameter.python
+#                              ^ punctuation.separator.annotation.python
+#                                ^^^^^^^^^^^^^^^^^^^^^ meta.type.python
+#                                                     ^ punctuation.separator.parameters.python
+#                                                       ^ storage.modifier.positional-args-only.python
+#                                                          ^^^ variable.parameter.python
+#                                                               ^^^ meta.type.python support.type.python
+#                                                                  ^ punctuation.separator.parameters.python
+#                                                                    ^^^^^^^ variable.parameter.python
+#                                                                           ^ punctuation.separator.annotation.python
+#                                                                             ^^^^^^^^^^ meta.type.python
+#                                                                             ^^^ support.class.typing.python
+#                                                                                 ^ keyword.operator.logical.union
+#                                                                                   ^^^^ constant.language.null.python
+#                                                                                        ^ keyword.operator.assignment.python
+#                                                                                          ^^^^ constant.language.null.python
+#                                                                                              ^ punctuation.section.parameters.end.python
+#                                                                                                ^^ punctuation.separator.return-type.python
+#                                                                                                   ^^^ support.class.typing.python
+
+(method) def methodName(cls: Type[Self@ParentName], key: str, default: Any | None = None) -> Any
+# ^^^^^ storage.type
+#                       ^^^ variable.parameter
+#                                                   ^^^ variable.parameter
+#                                                        ^^^ support.type
+#                                                             ^^^^^^^ variable.parameter
+#                                                                          ^ keyword.operator
+#                                                                                 ^ keyword.operator
+#                                                                                         ^^ punctuation.separator
+
+(function) def fail: _WithException[(reason: str = "", pytrace: bool = True, msg: str | None = None) -> NoReturn, Type[Failed]]
+#^^^^^^^^ storage.type.python
+#          ^^^^^^^^^ meta.function.python
+#                    ^^^^^^^^^^^^^^ meta.function.signature.python - meta.item-access
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.signature.python meta.brackets.python
+#                                   ^^^^^^^ meta.function.parameters.python
+#                                          ^^^^^^ meta.function.parameters.annotation.python
+#                                                ^^^^ meta.function.parameters.default-value.python
+#                                                    ^^^^^^^^^ meta.function.parameters.python
+#                                                             ^^^^^^^ meta.function.parameters.annotation.python
+#                                                                    ^^^^^^ meta.function.parameters.default-value.python
+#                                                                          ^^^^^ meta.function.parameters.python
+#                                                                               ^^^^^^^^^^^^^ meta.function.parameters.annotation.python
+#                                                                                            ^^^^^^ meta.function.parameters.default-value.python
+#                                                                                                  ^ meta.function.parameters.python
+#                                                                                                   ^ meta.function.python
+#                                                                                                    ^^^^^^^^^^^ meta.function.return-type.python
+#                                                                                                                     ^^^^^^^^ meta.brackets.python
+#          ^^^ keyword.declaration.function.python
+#              ^^^^ entity.name.function.python
+#                    ^^^^^^^^^^^^^^ meta.path.python meta.generic-name.python
+#                                  ^ punctuation.section.brackets.begin.python
+#                                   ^ punctuation.section.parameters.begin.python
+#                                    ^^^^^^ variable.parameter.python
+#                                          ^ punctuation.separator.annotation.python
+#                                            ^^^ support.type.python
+#                                                ^ keyword.operator.assignment.python
+#                                                  ^^ meta.string.python string.quoted.double.python
+#                                                    ^ punctuation.separator.parameters.python
+#                                                      ^^^^^^^ variable.parameter.python
+#                                                             ^ punctuation.separator.annotation.python
+#                                                               ^^^^ support.type.python
+#                                                                    ^ keyword.operator.assignment.python
+#                                                                      ^^^^ constant.language.boolean.python
+#                                                                          ^ punctuation.separator.parameters.python
+#                                                                            ^^^ variable.parameter.python
+#                                                                               ^ punctuation.separator.annotation.python
+#                                                                                 ^^^ support.type.python
+#                                                                                     ^ keyword.operator.logical.union
+#                                                                                       ^^^^ constant.language.null.python
+#                                                                                            ^ keyword.operator.assignment.python
+#                                                                                              ^^^^ constant.language.null.python
+#                                                                                                  ^ punctuation.section.parameters.end.python
+#                                                                                                    ^^ punctuation.separator.return-type.python
+#                                                                                                       ^^^^^^^^ support.class.typing.python
+#                                                                                                               ^ punctuation.separator.sequence.python
+#                                                                                                                 ^^^^ support.class.typing.python
+#                                                                                                                     ^ punctuation.section.brackets.begin.python
+#                                                                                                                      ^^^^^^ meta.path.python meta.generic-name.python
+#                                                                                                                            ^^ punctuation.section.brackets.end.python
+#
+
+(variable) variable_name: int
+# ^^^^^^^ storage.type
+#                       ^ punctuation.separator.annotation
+#                         ^^^ support.type
+
+(variable) TemporaryFile: Overload[(mode: Literal['r', 'w'], buffering: int = ...) -> _TemporaryFileWrapper[str]]
+# ^^^^^^^ storage.type
+#          ^^^^^^^^^^^^^ meta.generic-name.python
+#                         ^^^^^^^^ meta.type.python
+#                                 ^ meta.type.python meta.brackets.python - meta.function
+#                                  ^^^^^ meta.type.python meta.brackets.python meta.function.parameters.python
+#                                       ^^ meta.type.python meta.brackets.python meta.function.parameters.annotation.python - meta.type meta.type
+#                                         ^^^^^^^^^^^^^^^^^ meta.type.python meta.function.parameters.annotation.python meta.type.python
+#                                                          ^^^^^^^^^^^ meta.type.python meta.brackets.python meta.function.parameters - meta.type meta.type
+#                                                                     ^ meta.type.python meta.brackets.python meta.function.parameters.annotation.python punctuation.separator.annotation.python
+#                                                                      ^ meta.type.python meta.brackets.python meta.function.parameters.annotation.python
+#                                                                       ^^^^ meta.type.python meta.brackets.python meta.function.parameters.annotation.python meta.type.python
+#                                                                           ^^^^^ meta.type.python meta.brackets.python meta.function.parameters.default-value.python
+#                                                                                ^ meta.type.python meta.brackets.python meta.function.parameters.python
+#                                                                                 ^ meta.type.python meta.brackets.python meta.function.python
+#                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.python meta.brackets.python meta.function.return-type.python
+#                                                                                                               ^ meta.type.python meta.brackets.python - meta.function
+#                       ^ punctuation.separator.annotation.python
+#                         ^^^^^^^^ meta.generic-name.python
+#                                 ^ punctuation.section.brackets.begin.python
+#                                   ^^^^ variable.parameter.python
+#                                       ^ punctuation.separator.annotation.python
+#                                         ^^^^^^^ support.class.typing.python
+#                                                ^^^^^^^^^^ meta.brackets.python meta.brackets.python
+#                                                ^ punctuation.section.brackets.begin.python
+#                                                 ^^^ string.quoted.single.python
+#                                                    ^ punctuation.separator.sequence.python
+#                                                      ^^^ string.quoted.single.python
+#                                                         ^ punctuation.section.brackets.end.python
+#                                                          ^ punctuation.separator.parameters.python
+#                                                            ^^^^^^^^^ variable.parameter.python
+#                                                                     ^ punctuation.separator.annotation.python
+#                                                                       ^^^ support.type.python
+#                                                                           ^ keyword.operator.assignment.python
+#                                                                             ^^^ constant.language.python
+#                                                                                ^ punctuation.section.parameters.end.python
+#                                                                                  ^^ punctuation.separator
+#                                                                                     ^^^^^^^^^^^^^^^^^^^^^ meta.generic-name.python
+#                                                                                                          ^^^^^ meta.brackets.python meta.brackets.python
+#                                                                                                          ^ punctuation.section.brackets.begin.python
+#                                                                                                           ^^^ support.type.python
+#                                                                                                              ^^ punctuation.section.brackets.end.python
+
+import os, tempfile
+if os.name != "nt":
+    f = tempfile.NamedTemporaryFile("w")
+# The following case comes the above code when running under Windows and hover on "NamedTemporaryFile".
+# Notice that it has no leading type information, e.g., "(variable)".
+NamedTemporaryFile: Overload[() -> None, () -> None, (mode: Literal['r', 'w'] = ..., size: int = ...) -> None]
+#                                                     ^^^^ variable.parameter
+#                                                                             ^ keyword.operator.assignment
+#                                                                                    ^^^^ variable.parameter
+#                                                                                              ^ keyword.operator.assignment
+
+def foo(callback: ((arg: _T@foo) -> bool) | ((_T@foo) -> int) | None = None) -> (_T@foo | None)
+#       ^^^^^^^^ meta.function.parameters.python
+#               ^^ meta.function.parameters.annotation.python - meta.type
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters.annotation.python meta.type.python
+#                                                                   ^ meta.function.parameters.annotation.python - meta.type
+#                                                                    ^^^^^^ meta.function.parameters.default-value.python
+#                                                                          ^ meta.function.parameters.python
+#                 ^ meta.group.python - meta.group meta.function
+#                  ^^^^ meta.group.python meta.function.parameters.python
+#                      ^^ meta.group.python meta.function.parameters.annotation.python - meta.type meta.type
+#                        ^^^^^^ meta.group.python meta.function.parameters.annotation.python meta.type.python
+#                              ^ meta.group.python meta.function.parameters.python
+#                               ^ meta.group.python meta.function.python
+#                                ^^^^^^^ meta.group.python meta.function.return-type.python
+#                                       ^ meta.group.python - meta.group meta.function
+#                                           ^ meta.group.python - meta.group meta.function
+#                                            ^^^^^^^^ meta.group.python meta.function.parameters.python
+#                                                    ^ meta.group.python meta.function.python
+#                                                     ^^^^^^ meta.group.python meta.function.return-type.python
+#                                                           ^ meta.group.python - meta.group meta.function
+#                                                                    ^^^^^^ meta.function.parameters.default-value.python
+#                                                                          ^ meta.function.parameters.python
+#                                                                           ^ meta.function.python
+#                                                                            ^^^ meta.function.return-type.python - meta.group
+#                                                                               ^^^^^^^^^^^^^^^ meta.function.return-type.python meta.group.python
+#               ^ punctuation.separator.annotation.python
+#                 ^ punctuation.section.group.begin.python
+#                  ^ punctuation.section.parameters.begin.python
+#                   ^^^ variable.parameter.python
+#                      ^ punctuation.separator.annotation.python
+#                        ^^ meta.path.python meta.generic-name.python
+#                          ^ punctuation.accessor.python
+#                           ^^^ meta.path.python meta.generic-name.python
+#                              ^ punctuation.section.parameters.end.python
+#                                ^^ punctuation.separator.return-type.python
+#                                   ^^^^ support.type.python
+#                                       ^ punctuation.section.group.end.python
+#                                         ^ keyword.operator.logical.union
+#                                           ^ punctuation.section.group.begin.python
+#                                            ^ punctuation.section.parameters.begin.python
+#                                             ^^ meta.path.python meta.generic-name.python
+#                                               ^ punctuation.accessor.python
+#                                                ^^^ meta.path.python meta.generic-name.python
+#                                                   ^ punctuation.section.parameters.end.python
+#                                                     ^^ punctuation.separator.return-type.python
+#                                                        ^^^ support.type.python
+#                                                           ^ punctuation.section.group.end.python
+#                                                             ^ keyword.operator.logical.union
+#                                                               ^^^^ constant.language.null.python
+#                                                                    ^ keyword.operator.assignment.python
+#                                                                      ^^^^ constant.language.null.python
+#                                                                          ^ punctuation.section.parameters.end.python
+#                                                                            ^^ punctuation.separator.return-type.python
+#                                                                               ^ punctuation.section.group.begin.python
+#                                                                                ^^ meta.path.python meta.generic-name.python
+#                                                                                  ^ punctuation.accessor.python
+#                                                                                   ^^^ meta.path.python meta.generic-name.python
+#                                                                                       ^ keyword.operator.logical.union
+#                                                                                         ^^^^ constant.language.null.python
+#                                                                                             ^ punctuation.section.group.end.python

@@ -1,0 +1,64 @@
+{
+	"command": ["${node_bin}", "${server_path}", "--stdio"],
+	"schemes": [
+		"file", // regular files
+		"buffer", // in-memory buffers
+		"res", // files in .sublime-package archives
+	],
+	"disabled_capabilities": {
+		// set to true if you don't want semantic highlighting
+		"semanticTokensProvider": false,
+		// set to true if you don't want inlay hints
+		"inlayHintProvider": false,
+	},
+	// @see https://detachhead.github.io/basedpyright/#/settings?id=pyright-settings
+	"settings": {
+		// Use a predefined setup from this plugin, valid values are:
+		// - "": An empty string does nothing.
+		// - "sublime_text": Suitable for people who are developing ST Python plugins.
+		//                   The Python version which the developed plugin runs on will be used.
+		//                   `sys.path` from plugin_host will be added into "basedpyright.analysis.extraPaths"
+		//                   so ST package dependecies can be resolved by the LSP server.
+		// - "sublime_text_33": Similar to "sublime_text" but Python 3.3 forced.
+		// - "sublime_text_38": Similar to "sublime_text" but Python 3.8 forced.
+		"basedpyright.dev_environment": "",
+		// Offer auto-import completions.
+		"basedpyright.analysis.autoImportCompletions": true,
+		// Automatically add common search paths like 'src'?
+		"basedpyright.analysis.autoSearchPaths": true,
+		// Additional import search resolution paths
+		"basedpyright.analysis.extraPaths": [],
+		// Path to directory containing custom type stub files.
+		"basedpyright.analysis.stubPath": "./typings",
+		// "openFilesOnly" or "workspace"
+		"basedpyright.analysis.diagnosticMode": "openFilesOnly",
+		// Allows a user to override the severity levels for individual diagnostics.
+		// @see https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settings
+		"basedpyright.analysis.diagnosticSeverityOverrides": {
+			"reportDuplicateImport": "warning",
+			"reportImplicitStringConcatenation": "warning",
+			"reportUnboundVariable": "warning",
+			"reportUnusedClass": "information",
+			"reportUnusedFunction": "information",
+			"reportUnusedImport": "information",
+			"reportUnusedVariable": "information",
+		},
+		// Specifies the level of logging for the Output panel
+		"basedpyright.analysis.logLevel": "Information",
+		// Defines the default rule set for type checking.
+		"basedpyright.analysis.typeCheckingMode": "standard",
+		// Paths to look for typeshed modules.
+		"basedpyright.analysis.typeshedPaths": [],
+		// Use library implementations to extract type information when type stub is not present.
+		"basedpyright.analysis.useLibraryCodeForTypes": true,
+		// Disables type completion, definitions, and references.
+		"basedpyright.disableLanguageServices": false,
+		// Disables the "Organize Imports" command.
+		"basedpyright.disableOrganizeImports": false,
+		// Path to Python. Leave empty to attempt automatic resolution.
+		"python.pythonPath": "",
+		// Path to folder with a list of Virtual Environments.
+		"python.venvPath": "",
+	},
+	"selector": "source.python",
+}

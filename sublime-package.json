@@ -1,0 +1,1190 @@
+{
+  "contributions": {
+    "settings": [
+      {
+        "file_patterns": [
+          "/LSP-basedpyright.sublime-settings"
+        ],
+        "schema": {
+          "$id": "sublime://settings/LSP-basedpyright",
+          "allOf": [
+            {
+              "$ref": "sublime://settings/LSP-plugin-base"
+            },
+            {
+              "$ref": "sublime://settings/LSP-basedpyright#/definitions/PluginConfig"
+            }
+          ],
+          "definitions": {
+            "PluginConfig": {
+              "properties": {
+                "settings": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "basedpyright.dev_environment": {
+                      "default": "",
+                      "description": "Enables the pre-defined environment setup for specific developing needs.",
+                      "enum": [
+                        "",
+                        "sublime_text",
+                        "sublime_text_33",
+                        "sublime_text_38"
+                      ],
+                      "markdownEnumDescriptions": [
+                        "No modifications applied.",
+                        "Suitable for people who are developing ST python plugins. The Python version which the developed plugin runs on will be used. - `sys.path` from the plugin_host will be added into \"basedpyright.analysis.extraPaths\" so that ST package dependencies can be resolved by the LSP server.",
+                        "Similar to \"sublime_text\" but Python 3.3 forced.",
+                        "Similar to \"sublime_text\" but Python 3.8 forced."
+                      ]
+                    },
+                    "basedpyright.disableLanguageServices": {
+                      "default": false,
+                      "description": "Disables type completion, definitions, and references.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.disableOrganizeImports": {
+                      "default": false,
+                      "description": "Disables the \"Organize Imports\" command.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.autoImportCompletions": {
+                      "default": true,
+                      "description": "Offer auto-import completions.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.autoSearchPaths": {
+                      "default": true,
+                      "description": "Automatically add common search paths like 'src'?",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.diagnosticMode": {
+                      "default": "openFilesOnly",
+                      "enum": [
+                        "openFilesOnly",
+                        "workspace"
+                      ],
+                      "enumDescriptions": [
+                        "Analyzes and reports errors on only open files.",
+                        "Analyzes and reports errors on all files in the workspace."
+                      ],
+                      "type": "string"
+                    },
+                    "basedpyright.analysis.diagnosticSeverityOverrides": {
+                      "description": "Allows a user to override the severity levels for individual diagnostics.",
+                      "properties": {
+                        "analyzeUnannotatedFunctions": {
+                          "$ref": "sublime://pyrightconfig#/properties/analyzeUnannotatedFunctions"
+                        },
+                        "deprecateTypingAliases": {
+                          "$ref": "sublime://pyrightconfig#/properties/deprecateTypingAliases"
+                        },
+                        "disableBytesTypePromotions": {
+                          "$ref": "sublime://pyrightconfig#/properties/disableBytesTypePromotions"
+                        },
+                        "enableExperimentalFeatures": {
+                          "$ref": "sublime://pyrightconfig#/properties/enableExperimentalFeatures"
+                        },
+                        "enableTypeIgnoreComments": {
+                          "$ref": "sublime://pyrightconfig#/properties/enableTypeIgnoreComments"
+                        },
+                        "reportAbstractUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAbstractUsage"
+                        },
+                        "reportArgumentType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportArgumentType"
+                        },
+                        "reportAssertAlwaysTrue": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAssertAlwaysTrue"
+                        },
+                        "reportAssertTypeFailure": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAssertTypeFailure"
+                        },
+                        "reportAssignmentType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAssignmentType"
+                        },
+                        "reportAttributeAccessIssue": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAttributeAccessIssue"
+                        },
+                        "reportCallInDefaultInitializer": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportCallInDefaultInitializer"
+                        },
+                        "reportCallIssue": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportCallIssue"
+                        },
+                        "reportConstantRedefinition": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportConstantRedefinition"
+                        },
+                        "reportDeprecated": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportDeprecated"
+                        },
+                        "reportDuplicateImport": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportDuplicateImport"
+                        },
+                        "reportFunctionMemberAccess": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportFunctionMemberAccess"
+                        },
+                        "reportGeneralTypeIssues": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportGeneralTypeIssues"
+                        },
+                        "reportImplicitOverride": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportImplicitOverride"
+                        },
+                        "reportImplicitStringConcatenation": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportImplicitStringConcatenation"
+                        },
+                        "reportImportCycles": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportImportCycles"
+                        },
+                        "reportIncompatibleMethodOverride": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIncompatibleMethodOverride"
+                        },
+                        "reportIncompatibleVariableOverride": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIncompatibleVariableOverride"
+                        },
+                        "reportIncompleteStub": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIncompleteStub"
+                        },
+                        "reportInconsistentConstructor": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInconsistentConstructor"
+                        },
+                        "reportInconsistentOverload": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInconsistentOverload"
+                        },
+                        "reportIndexIssue": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIndexIssue"
+                        },
+                        "reportInvalidStringEscapeSequence": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidStringEscapeSequence"
+                        },
+                        "reportInvalidStubStatement": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidStubStatement"
+                        },
+                        "reportInvalidTypeArguments": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidTypeArguments"
+                        },
+                        "reportInvalidTypeForm": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidTypeForm"
+                        },
+                        "reportInvalidTypeVarUse": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidTypeVarUse"
+                        },
+                        "reportMatchNotExhaustive": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMatchNotExhaustive"
+                        },
+                        "reportMissingImports": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingImports"
+                        },
+                        "reportMissingModuleSource": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingModuleSource"
+                        },
+                        "reportMissingParameterType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingParameterType"
+                        },
+                        "reportMissingSuperCall": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingSuperCall"
+                        },
+                        "reportMissingTypeArgument": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingTypeArgument"
+                        },
+                        "reportMissingTypeStubs": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportMissingTypeStubs"
+                        },
+                        "reportNoOverloadImplementation": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportNoOverloadImplementation"
+                        },
+                        "reportOperatorIssue": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOperatorIssue"
+                        },
+                        "reportOptionalCall": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalCall"
+                        },
+                        "reportOptionalContextManager": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalContextManager"
+                        },
+                        "reportOptionalIterable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalIterable"
+                        },
+                        "reportOptionalMemberAccess": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalMemberAccess"
+                        },
+                        "reportOptionalOperand": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalOperand"
+                        },
+                        "reportOptionalSubscript": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOptionalSubscript"
+                        },
+                        "reportOverlappingOverload": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportOverlappingOverload"
+                        },
+                        "reportPossiblyUnboundVariable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPossiblyUnboundVariable"
+                        },
+                        "reportPrivateImportUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPrivateImportUsage"
+                        },
+                        "reportPrivateUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPrivateUsage"
+                        },
+                        "reportPropertyTypeMismatch": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPropertyTypeMismatch"
+                        },
+                        "reportRedeclaration": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportRedeclaration"
+                        },
+                        "reportReturnType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportReturnType"
+                        },
+                        "reportSelfClsParameterName": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportSelfClsParameterName"
+                        },
+                        "reportShadowedImports": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportShadowedImports"
+                        },
+                        "reportTypeCommentUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportTypeCommentUsage"
+                        },
+                        "reportTypedDictNotRequiredAccess": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportTypedDictNotRequiredAccess"
+                        },
+                        "reportUnboundVariable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnboundVariable"
+                        },
+                        "reportUnhashable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnhashable"
+                        },
+                        "reportUndefinedVariable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUndefinedVariable"
+                        },
+                        "reportUninitializedInstanceVariable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUninitializedInstanceVariable"
+                        },
+                        "reportUnknownArgumentType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnknownArgumentType"
+                        },
+                        "reportUnknownLambdaType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnknownLambdaType"
+                        },
+                        "reportUnknownMemberType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnknownMemberType"
+                        },
+                        "reportUnknownParameterType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnknownParameterType"
+                        },
+                        "reportUnknownVariableType": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnknownVariableType"
+                        },
+                        "reportUnnecessaryCast": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryCast"
+                        },
+                        "reportUnnecessaryComparison": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryComparison"
+                        },
+                        "reportUnnecessaryContains": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryContains"
+                        },
+                        "reportUnnecessaryIsInstance": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryIsInstance"
+                        },
+                        "reportUnnecessaryTypeIgnoreComment": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryTypeIgnoreComment"
+                        },
+                        "reportUnsupportedDunderAll": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnsupportedDunderAll"
+                        },
+                        "reportUntypedBaseClass": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUntypedBaseClass"
+                        },
+                        "reportUntypedClassDecorator": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUntypedClassDecorator"
+                        },
+                        "reportUntypedFunctionDecorator": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUntypedFunctionDecorator"
+                        },
+                        "reportUntypedNamedTuple": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUntypedNamedTuple"
+                        },
+                        "reportUnusedCallResult": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedCallResult"
+                        },
+                        "reportUnusedClass": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedClass"
+                        },
+                        "reportUnusedCoroutine": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedCoroutine"
+                        },
+                        "reportUnusedExcept": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedExcept"
+                        },
+                        "reportUnusedExpression": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedExpression"
+                        },
+                        "reportUnusedFunction": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedFunction"
+                        },
+                        "reportUnusedImport": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedImport"
+                        },
+                        "reportUnusedVariable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnusedVariable"
+                        },
+                        "reportWildcardImportFromLibrary": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportWildcardImportFromLibrary"
+                        },
+                        "strictDictionaryInference": {
+                          "$ref": "sublime://pyrightconfig#/properties/strictDictionaryInference"
+                        },
+                        "strictListInference": {
+                          "$ref": "sublime://pyrightconfig#/properties/strictListInference"
+                        },
+                        "strictParameterNoneValue": {
+                          "$ref": "sublime://pyrightconfig#/properties/strictParameterNoneValue"
+                        },
+                        "strictSetInference": {
+                          "$ref": "sublime://pyrightconfig#/properties/strictSetInference"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "basedpyright.analysis.extraPaths": {
+                      "$ref": "sublime://pyrightconfig#/properties/extraPaths"
+                    },
+                    "basedpyright.analysis.logLevel": {
+                      "default": "Information",
+                      "description": "Specifies the level of logging for the Output panel",
+                      "enum": [
+                        "Error",
+                        "Warning",
+                        "Information",
+                        "Trace"
+                      ],
+                      "type": "string"
+                    },
+                    "basedpyright.analysis.stubPath": {
+                      "$ref": "sublime://pyrightconfig#/properties/stubPath"
+                    },
+                    "basedpyright.analysis.typeCheckingMode": {
+                      "$ref": "sublime://pyrightconfig#/properties/typeCheckingMode"
+                    },
+                    "basedpyright.analysis.typeshedPaths": {
+                      "default": [],
+                      "description": "Paths to look for typeshed modules.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "basedpyright.analysis.useLibraryCodeForTypes": {
+                      "$ref": "sublime://pyrightconfig#/properties/useLibraryCodeForTypes"
+                    },
+                    "python.pythonPath": {
+                      "default": "python",
+                      "description": "Path to Python, you can use a custom version of Python.",
+                      "type": "string"
+                    },
+                    "python.venvPath": {
+                      "$ref": "sublime://pyrightconfig#/properties/venvPath"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "file_patterns": [
+          "/pyrightconfig.json"
+        ],
+        "schema": {
+          "$id": "sublime://pyrightconfig",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "allowComments": true,
+          "allowTrailingCommas": true,
+          "definitions": {
+            "diagnostic": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "enum": [
+                    "none",
+                    "information",
+                    "warning",
+                    "error"
+                  ],
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "description": "Pyright Configuration Schema",
+          "properties": {
+            "analyzeUnannotatedFunctions": {
+              "$id": "#/properties/analyzeUnannotatedFunctions",
+              "default": true,
+              "title": "Analyze and report diagnostics for functions that have no annotations",
+              "type": "boolean"
+            },
+            "defineConstant": {
+              "$id": "#/properties/defineConstant",
+              "additionalProperties": {
+                "title": "Value of constant (boolean or string)",
+                "type": [
+                  "string",
+                  "boolean"
+                ]
+              },
+              "properties": {},
+              "title": "Identifiers that should be treated as constants",
+              "type": "object"
+            },
+            "deprecateTypingAliases": {
+              "$id": "#/properties/deprecateTypingAliases",
+              "default": false,
+              "title": "Treat typing-specific aliases to standard types as deprecated",
+              "type": "boolean"
+            },
+            "disableBytesTypePromotions": {
+              "$id": "#/properties/disableBytesTypePromotions",
+              "default": false,
+              "title": "Do not treat `bytearray` and `memoryview` as implicit subtypes of `bytes`",
+              "type": "boolean"
+            },
+            "enableExperimentalFeatures": {
+              "$id": "#/properties/enableExperimentalFeatures",
+              "default": false,
+              "title": "Enable the use of experimental features that are not part of the Python typing spec",
+              "type": "boolean"
+            },
+            "enableTypeIgnoreComments": {
+              "$id": "#/properties/enableTypeIgnoreComments",
+              "default": true,
+              "title": "Allow \"# type: ignore\" comments",
+              "type": "boolean"
+            },
+            "exclude": {
+              "$id": "#/properties/exclude",
+              "items": {
+                "$id": "#/properties/exclude/items",
+                "pattern": "^(.*)$",
+                "title": "File or directory to exclude from type analysis",
+                "type": "string"
+              },
+              "title": "Files and directories excluded from type analysis",
+              "type": "array"
+            },
+            "executionEnvironments": {
+              "$id": "#/properties/executionEnvironments",
+              "items": {
+                "$id": "#/properties/executionEnvironments/items",
+                "properties": {
+                  "extraPaths": {
+                    "$id": "#/properties/executionEnvironments/items/properties/extraPaths",
+                    "items": {
+                      "$id": "#/properties/executionEnvironments/items/properties/extraPaths/items",
+                      "default": "",
+                      "pattern": "^(.*)$",
+                      "title": "Additional import search resolution path",
+                      "type": "string"
+                    },
+                    "title": "Additional import search resolution paths",
+                    "type": "array"
+                  },
+                  "pythonPlatform": {
+                    "$id": "#/properties/executionEnvironments/items/properties/pythonPlatform",
+                    "default": "",
+                    "examples": [
+                      "Linux"
+                    ],
+                    "pattern": "^(Linux|Windows|Darwin|All)$",
+                    "title": "Python platform to assume during type analysis",
+                    "type": "string"
+                  },
+                  "pythonVersion": {
+                    "$id": "#/properties/executionEnvironments/items/properties/pythonVersion",
+                    "default": "",
+                    "examples": [
+                      "3.7"
+                    ],
+                    "pattern": "^3\\.[0-9]+$",
+                    "title": "Python version to assume during type analysis",
+                    "type": "string"
+                  },
+                  "root": {
+                    "$id": "#/properties/executionEnvironments/items/properties/root",
+                    "default": "",
+                    "pattern": "^(.*)$",
+                    "title": "Path to code subdirectory to which these settings apply",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "root"
+                ],
+                "title": "Analysis settings to use for specified subdirectories of code",
+                "type": "object"
+              },
+              "title": "Analysis settings to use for specified subdirectories of code",
+              "type": "array"
+            },
+            "extraPaths": {
+              "$id": "#/properties/extraPaths",
+              "items": {
+                "$id": "#/properties/extraPaths/items",
+                "default": "",
+                "pattern": "^(.*)$",
+                "title": "Additional import search resolution path",
+                "type": "string"
+              },
+              "title": "Additional import search resolution paths",
+              "type": "array"
+            },
+            "ignore": {
+              "$id": "#/properties/ignore",
+              "items": {
+                "$id": "#/properties/ignore/items",
+                "pattern": "^(.*)$",
+                "title": "File or directory where diagnostics should be suppressed",
+                "type": "string"
+              },
+              "title": "Files and directories whose diagnostics are suppressed",
+              "type": "array"
+            },
+            "include": {
+              "$id": "#/properties/include",
+              "items": {
+                "$id": "#/properties/include/items",
+                "pattern": "^(.*)$",
+                "title": "File or directory to include in type analysis",
+                "type": "string"
+              },
+              "title": "Files and directories included in type analysis",
+              "type": "array"
+            },
+            "pythonPlatform": {
+              "$id": "#/properties/pythonPlatform",
+              "default": "",
+              "examples": [
+                "Linux"
+              ],
+              "pattern": "^(Linux|Windows|Darwin|All)$",
+              "title": "Python platform to assume during type analysis",
+              "type": "string"
+            },
+            "pythonVersion": {
+              "$id": "#/properties/pythonVersion",
+              "default": "",
+              "examples": [
+                "3.7"
+              ],
+              "pattern": "^3\\.[0-9]+$",
+              "title": "Python version to assume during type analysis",
+              "type": "string"
+            },
+            "reportAbstractUsage": {
+              "$id": "#/properties/reportAbstractUsage",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempted instantiation of abstract class"
+            },
+            "reportArgumentType": {
+              "$id": "#/properties/reportArgumentType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of incompatible argument type"
+            },
+            "reportAssertAlwaysTrue": {
+              "$id": "#/properties/reportAssertAlwaysTrue",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting assert expressions that will always evaluate to true"
+            },
+            "reportAssertTypeFailure": {
+              "$id": "#/properties/reportAssertTypeFailure",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of type mismatch detected by typing.assert_type call"
+            },
+            "reportAssignmentType": {
+              "$id": "#/properties/reportAssignmentType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of type incompatibilities for assignments"
+            },
+            "reportAttributeAccessIssue": {
+              "$id": "#/properties/reportAttributeAccessIssue",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of issues related to attribute accesses"
+            },
+            "reportCallInDefaultInitializer": {
+              "$id": "#/properties/reportCallInDefaultInitializer",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting usage of function calls within a default value initializer expression"
+            },
+            "reportCallIssue": {
+              "$id": "#/properties/reportCallIssue",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of issues related to call expressions and arguments"
+            },
+            "reportConstantRedefinition": {
+              "$id": "#/properties/reportConstantRedefinition",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of attempts to redefine variables that are in all-caps"
+            },
+            "reportDeprecated": {
+              "$id": "#/properties/reportDeprecated",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of use of deprecated class or function"
+            },
+            "reportDuplicateImport": {
+              "$id": "#/properties/reportDuplicateImport",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of symbols or modules that are imported more than once"
+            },
+            "reportFunctionMemberAccess": {
+              "$id": "#/properties/reportFunctionMemberAccess",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of member accesses on function objects"
+            },
+            "reportGeneralTypeIssues": {
+              "$id": "#/properties/reportGeneralTypeIssues",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of general type issues"
+            },
+            "reportImplicitOverride": {
+              "$id": "#/properties/reportImplicitOverride",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting overridden methods that are missing an `@override` decorator"
+            },
+            "reportImplicitStringConcatenation": {
+              "$id": "#/properties/reportImplicitStringConcatenation",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting usage of implicit concatenation of string literals"
+            },
+            "reportImportCycles": {
+              "$id": "#/properties/reportImportCycles",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of module imports that create cycles in import graph"
+            },
+            "reportIncompatibleMethodOverride": {
+              "$id": "#/properties/reportIncompatibleMethodOverride",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of method overrides in subclasses that redefine the method in an incompatible way"
+            },
+            "reportIncompatibleVariableOverride": {
+              "$id": "#/properties/reportIncompatibleVariableOverride",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of overrides in subclasses that redefine a variable in an incompatible way"
+            },
+            "reportIncompleteStub": {
+              "$id": "#/properties/reportIncompleteStub",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of incomplete type stubs that declare a module-level __getattr__ function"
+            },
+            "reportInconsistentConstructor": {
+              "$id": "#/properties/reportInconsistentConstructor",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of __init__ and __new__ methods whose signatures are inconsistent"
+            },
+            "reportInconsistentOverload": {
+              "$id": "#/properties/reportInconsistentOverload",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of inconsistencies between function overload signatures"
+            },
+            "reportIndexIssue": {
+              "$id": "#/properties/reportIndexIssue",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of issues related to index operations and expressions"
+            },
+            "reportInvalidStringEscapeSequence": {
+              "$id": "#/properties/reportInvalidStringEscapeSequence",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of invalid escape sequences used within string literals"
+            },
+            "reportInvalidStubStatement": {
+              "$id": "#/properties/reportInvalidStubStatement",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of type stub statements that do not conform to PEP 484"
+            },
+            "reportInvalidTypeArguments": {
+              "$id": "#/properties/reportInvalidTypeArguments",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of invalid type argument usage"
+            },
+            "reportInvalidTypeForm": {
+              "$id": "#/properties/reportInvalidTypeForm",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of type expressions that use an invalid form"
+            },
+            "reportInvalidTypeVarUse": {
+              "$id": "#/properties/reportInvalidTypeVarUse",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting improper use of type variables within function signatures"
+            },
+            "reportMatchNotExhaustive": {
+              "$id": "#/properties/reportMatchNotExhaustive",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of 'match' statements that do not exhaustively match all possible values"
+            },
+            "reportMissingImports": {
+              "$id": "#/properties/reportMissingImports",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of imports that cannot be resolved"
+            },
+            "reportMissingModuleSource": {
+              "$id": "#/properties/reportMissingModuleSource",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of imports that cannot be resolved to source files"
+            },
+            "reportMissingParameterType": {
+              "$id": "#/properties/reportMissingParameterType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting input parameters that are missing a type annotation"
+            },
+            "reportMissingSuperCall": {
+              "$id": "#/properties/reportMissingSuperCall",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of missing call to parent class for inherited `__init__` methods"
+            },
+            "reportMissingTypeArgument": {
+              "$id": "#/properties/reportMissingTypeArgument",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting generic class reference with missing type arguments"
+            },
+            "reportMissingTypeStubs": {
+              "$id": "#/properties/reportMissingTypeStubs",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of imports that cannot be resolved to type stub files"
+            },
+            "reportNoOverloadImplementation": {
+              "$id": "#/properties/reportNoOverloadImplementation",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of an overloaded function or method with a missing implementation"
+            },
+            "reportOperatorIssue": {
+              "$id": "#/properties/reportOperatorIssue",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of diagnostics related to unary and binary operators"
+            },
+            "reportOptionalCall": {
+              "$id": "#/properties/reportOptionalCall",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to call a variable with Optional type"
+            },
+            "reportOptionalContextManager": {
+              "$id": "#/properties/reportOptionalContextManager",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use an Optional type as a parameter to a with statement"
+            },
+            "reportOptionalIterable": {
+              "$id": "#/properties/reportOptionalIterable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use an Optional type as an iterable value"
+            },
+            "reportOptionalMemberAccess": {
+              "$id": "#/properties/reportOptionalMemberAccess",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to access a member of a variable with Optional type"
+            },
+            "reportOptionalOperand": {
+              "$id": "#/properties/reportOptionalOperand",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use an Optional type as an operand for a binary or unary operator"
+            },
+            "reportOptionalSubscript": {
+              "$id": "#/properties/reportOptionalSubscript",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to subscript (index) a variable with Optional type"
+            },
+            "reportOverlappingOverload": {
+              "$id": "#/properties/reportOverlappingOverload",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of function overloads that overlap in signature and obscure each other or do not agree on return type"
+            },
+            "reportPossiblyUnboundVariable": {
+              "$id": "#/properties/reportPossiblyUnboundVariable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use variable that is possibly unbound on some code paths"
+            },
+            "reportPrivateImportUsage": {
+              "$id": "#/properties/reportPrivateImportUsage",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of improper usage of symbol imported from a \"py.typed\" module that is not re-exported from that module"
+            },
+            "reportPrivateUsage": {
+              "$id": "#/properties/reportPrivateUsage",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of private variables and functions used outside of the owning class or module and usage of protected members outside of subclasses"
+            },
+            "reportPropertyTypeMismatch": {
+              "$id": "#/properties/reportPropertyTypeMismatch",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of property getter/setter type mismatches"
+            },
+            "reportRedeclaration": {
+              "$id": "#/properties/reportRedeclaration",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to declare the type of a symbol multiple times"
+            },
+            "reportReturnType": {
+              "$id": "#/properties/reportReturnType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of function return type incompatibility"
+            },
+            "reportSelfClsParameterName": {
+              "$id": "#/properties/reportSelfClsParameterName",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting missing or misnamed self parameters"
+            },
+            "reportShadowedImports": {
+              "$id": "#/properties/reportShadowedImports",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of shadowed imports of stdlib modules"
+            },
+            "reportTypeCommentUsage": {
+              "$id": "#/properties/reportTypeCommentUsage",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of deprecated type comment usage"
+            },
+            "reportTypedDictNotRequiredAccess": {
+              "$id": "#/properties/reportTypedDictNotRequiredAccess",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to access a non-required key in a TypedDict without a check for its presence"
+            },
+            "reportUnboundVariable": {
+              "$id": "#/properties/reportUnboundVariable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use an unbound variable"
+            },
+            "reportUndefinedVariable": {
+              "$id": "#/properties/reportUndefinedVariable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of attempts to use an undefined variable"
+            },
+            "reportUnhashable": {
+              "$id": "#/properties/reportUnhashable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of unhashable object in container that requires hashability"
+            },
+            "reportUninitializedInstanceVariable": {
+              "$id": "#/properties/reportUninitializedInstanceVariable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of instance variables that are not initialized in the constructor"
+            },
+            "reportUnknownArgumentType": {
+              "$id": "#/properties/reportUnknownArgumentType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting argument expressions whose types are unknown"
+            },
+            "reportUnknownLambdaType": {
+              "$id": "#/properties/reportUnknownLambdaType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting input and return parameters for lambdas whose types are unknown"
+            },
+            "reportUnknownMemberType": {
+              "$id": "#/properties/reportUnknownMemberType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting class and instance variables whose types are unknown"
+            },
+            "reportUnknownParameterType": {
+              "$id": "#/properties/reportUnknownParameterType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting input and return parameters whose types are unknown"
+            },
+            "reportUnknownVariableType": {
+              "$id": "#/properties/reportUnknownVariableType",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting local variables whose types are unknown"
+            },
+            "reportUnnecessaryCast": {
+              "$id": "#/properties/reportUnnecessaryCast",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting calls to 'cast' that are unnecessary"
+            },
+            "reportUnnecessaryComparison": {
+              "$id": "#/properties/reportUnnecessaryComparison",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting the use of '==' or '!=' comparisons that are unnecessary"
+            },
+            "reportUnnecessaryContains": {
+              "$id": "#/properties/reportUnnecessaryContains",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting the use of 'in' operations that are unnecessary"
+            },
+            "reportUnnecessaryIsInstance": {
+              "$id": "#/properties/reportUnnecessaryIsInstance",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting calls to 'isinstance' or 'issubclass' where the result is statically determined to be always true"
+            },
+            "reportUnnecessaryTypeIgnoreComment": {
+              "$id": "#/properties/reportUnnecessaryTypeIgnoreComment",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of '# type: ignore' comments that have no effect'"
+            },
+            "reportUnsupportedDunderAll": {
+              "$id": "#/properties/reportUnsupportedDunderAll",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of unsupported operations performed on __all__"
+            },
+            "reportUntypedBaseClass": {
+              "$id": "#/properties/reportUntypedBaseClass",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of a base class of an unknown type, which obscures most type checking for the class"
+            },
+            "reportUntypedClassDecorator": {
+              "$id": "#/properties/reportUntypedClassDecorator",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of class decorators without type annotations, which obscure class types"
+            },
+            "reportUntypedFunctionDecorator": {
+              "$id": "#/properties/reportUntypedFunctionDecorator",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of function decorators without type annotations, which obscure function types"
+            },
+            "reportUntypedNamedTuple": {
+              "$id": "#/properties/reportUntypedNamedTuple",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of a named tuple definition that does not contain type information"
+            },
+            "reportUnusedCallResult": {
+              "$id": "#/properties/reportUnusedCallResult",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of call expressions whose results are not consumed"
+            },
+            "reportUnusedClass": {
+              "$id": "#/properties/reportUnusedClass",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of private classes that are not accessed"
+            },
+            "reportUnusedCoroutine": {
+              "$id": "#/properties/reportUnusedCoroutine",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of call expressions that returns Coroutine whose results are not consumed"
+            },
+            "reportUnusedExcept": {
+              "$id": "#/properties/reportUnusedExcept",
+              "$ref": "#/definitions/diagnostic",
+              "default": "error",
+              "title": "Controls reporting of unreachable except clauses"
+            },
+            "reportUnusedExpression": {
+              "$id": "#/properties/reportUnusedExpression",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of simple expressions whose value is not used in any way"
+            },
+            "reportUnusedFunction": {
+              "$id": "#/properties/reportUnusedFunction",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of private functions or methods that are not accessed"
+            },
+            "reportUnusedImport": {
+              "$id": "#/properties/reportUnusedImport",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of imported symbols that are not referenced within the source file"
+            },
+            "reportUnusedVariable": {
+              "$id": "#/properties/reportUnusedVariable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of local variables that are not accessed"
+            },
+            "reportWildcardImportFromLibrary": {
+              "$id": "#/properties/reportWildcardImportFromLibrary",
+              "$ref": "#/definitions/diagnostic",
+              "default": "warning",
+              "title": "Controls reporting of wildcard import from external library"
+            },
+            "strict": {
+              "$id": "#/properties/strict",
+              "items": {
+                "$id": "#/properties/strict/items",
+                "pattern": "^(.*)$",
+                "title": "File or directory that should use 'strict' type checking rules",
+                "type": "string"
+              },
+              "title": "Files and directories that should use 'strict' type checking rules",
+              "type": "array"
+            },
+            "strictDictionaryInference": {
+              "$id": "#/properties/strictDictionaryInference",
+              "default": false,
+              "title": "Infer strict types for dictionary expressions",
+              "type": "boolean"
+            },
+            "strictListInference": {
+              "$id": "#/properties/strictListInference",
+              "default": false,
+              "title": "Infer strict types for list expressions",
+              "type": "boolean"
+            },
+            "strictParameterNoneValue": {
+              "$id": "#/properties/strictParameterNoneValue",
+              "default": true,
+              "title": "Allow implicit Optional when default parameter value is None",
+              "type": "boolean"
+            },
+            "strictSetInference": {
+              "$id": "#/properties/strictSetInference",
+              "default": false,
+              "title": "Infer strict types for set expressions",
+              "type": "boolean"
+            },
+            "stubPath": {
+              "$id": "#/properties/stubPath",
+              "default": "",
+              "examples": [
+                "src/typestubs"
+              ],
+              "pattern": "^(.*)$",
+              "title": "Path to directory containing custom type stub files",
+              "type": "string"
+            },
+            "typeCheckingMode": {
+              "$id": "#/properties/typeCheckingMode",
+              "default": "standard",
+              "enum": [
+                "off",
+                "basic",
+                "standard",
+                "strict"
+              ],
+              "title": "Specifies the default rule set to use for type checking",
+              "type": "string"
+            },
+            "typeshedPath": {
+              "$id": "#/properties/typeshedPath",
+              "default": "",
+              "pattern": "^(.*)$",
+              "title": "Path to directory containing typeshed type stub files",
+              "type": "string"
+            },
+            "useLibraryCodeForTypes": {
+              "$id": "#/properties/useLibraryCodeForTypes",
+              "default": true,
+              "title": "Use library implementations to extract type information when type stub is not present",
+              "type": "boolean"
+            },
+            "venv": {
+              "$id": "#/properties/venv",
+              "default": "",
+              "examples": [
+                "python37"
+              ],
+              "pattern": "^(.*)$",
+              "title": "Name of virtual environment subdirectory within venvPath",
+              "type": "string"
+            },
+            "venvPath": {
+              "$id": "#/properties/venvPath",
+              "default": "",
+              "pattern": "^(.*)$",
+              "title": "Path to directory containing a folder of virtual environments",
+              "type": "string"
+            },
+            "verboseOutput": {
+              "$id": "#/properties/verboseOutput",
+              "default": false,
+              "title": "Output verbose logging",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      {
+        "file_patterns": [
+          "/*.sublime-project"
+        ],
+        "schema": {
+          "properties": {
+            "settings": {
+              "properties": {
+                "LSP": {
+                  "properties": {
+                    "LSP-basedpyright": {
+                      "$ref": "sublime://settings/LSP-basedpyright#/definitions/PluginConfig"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
