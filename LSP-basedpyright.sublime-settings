@@ -46,7 +46,7 @@
 		// Specifies the level of logging for the Output panel
 		"basedpyright.analysis.logLevel": "Information",
 		// Defines the default rule set for type checking.
-		"basedpyright.analysis.typeCheckingMode": "standard",
+		"basedpyright.analysis.typeCheckingMode": "all",
 		// Paths to look for typeshed modules.
 		"basedpyright.analysis.typeshedPaths": [],
 		// Use library implementations to extract type information when type stub is not present.

@@ -1115,12 +1115,13 @@
             },
             "typeCheckingMode": {
               "$id": "#/properties/typeCheckingMode",
-              "default": "standard",
+              "default": "all",
               "enum": [
                 "off",
                 "basic",
                 "standard",
-                "strict"
+                "strict",
+                "all"
               ],
               "title": "Specifies the default rule set to use for type checking",
               "type": "string"
