@@ -1,0 +1,70 @@
+name: Update schema in Dependabot PR
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'language-server/package.json'
+
+permissions:
+  contents: write
+  pull-requests: write
+  repository-projects: write
+
+jobs:
+  update_schema:
+    name: Run schema update
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Update schema
+        id: update-schema
+        run: |
+          {
+            echo 'OUTPUT<<EOF'
+            make update-schema
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check for modified files
+        id: git-check
+        run: echo "GIT_MODIFIED=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)" >> "$GITHUB_OUTPUT"
+
+      - name: Update changes in the PR
+        if: steps.git-check.outputs.GIT_MODIFIED == 'true'
+        run:  |
+          git config --global user.name github-actions[bot]
+          git config --global user.email github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m '[automated commit] update schema'
+          git push
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Following are the schema changes in the new version. Make sure that those are reflected in `LSP-basedpyright.sublime-settings` and `sublime-package.json` files.
+
+            ```
+            ${{ steps.update-schema.outputs.OUTPUT }}
+            ```
+          edit-mode: replace

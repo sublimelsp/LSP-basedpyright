@@ -7,13 +7,11 @@ from pathlib import Path
 from typing import Any
 from urllib.request import urlopen
 
-PACKAGE_NAME = "LSP-pyright"
+PACKAGE_NAME = "LSP-basedpyright"
 
 PROJECT_ROOT = Path(__file__).parents[1]
 PYRIGHTCONFIG_SCHEMA_ID = "sublime://pyrightconfig"
-PYRIGHT_CONFIGURATION_SCHEMA_URL = (
-    "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json"  # noqa: E501
-)
+PYRIGHT_CONFIGURATION_SCHEMA_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json"
 SUBLIME_PACKAGE_JSON_PATH = PROJECT_ROOT / "sublime-package.json"
 # Keys that are in the pyrightconfig.json schema but should not raise a comment when not present in the LSP schema.
 IGNORED_PYRIGHTCONFIG_KEYS = {
@@ -81,7 +79,7 @@ def update_schema(sublime_package_json: JsonDict, pyrightconfig_schema_json: Jso
         last_component_key = setting_key.rpartition(".")[2]
         if last_component_key in pyrightconfig_properties:
             update_property_ref(last_component_key, setting_value, pyrightconfig_properties)
-        if setting_key == "python.analysis.diagnosticSeverityOverrides":
+        if setting_key == "basedpyright.analysis.diagnosticSeverityOverrides":
             overrides_properties: JsonDict = setting_value["properties"]
             for override_key, override_value in overrides_properties.items():
                 if override_key in pyrightconfig_properties:
@@ -92,7 +90,7 @@ def update_schema(sublime_package_json: JsonDict, pyrightconfig_schema_json: Jso
     # If the property is neither in `diagnosticSeverityOverrides`, the root LSP settings nor in ignored keys
     # then it might have to be added manually.
     all_settings_keys = [key.rpartition(".")[2] for key in settings_properties.keys()]
-    all_overrides_keys = settings_properties["python.analysis.diagnosticSeverityOverrides"]["properties"].keys()
+    all_overrides_keys = settings_properties["basedpyright.analysis.diagnosticSeverityOverrides"]["properties"].keys()
     new_schema_keys = []
     for pyrightconfig_key in pyrightconfig_properties.keys():
         if (

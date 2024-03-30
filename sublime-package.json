@@ -330,6 +330,21 @@
                         "reportWildcardImportFromLibrary": {
                           "$ref": "sublime://pyrightconfig#/properties/reportWildcardImportFromLibrary"
                         },
+                        "reportUnreachable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnreachable"
+                        },
+                        "reportAny": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAny"
+                        },
+                        "reportIgnoreCommentWithoutRule": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIgnoreCommentWithoutRule"
+                        },
+                        "reportPrivateLocalImportUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPrivateLocalImportUsage"
+                        },
+                        "reportImplicitRelativeImport": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportImplicitRelativeImport"
+                        },
                         "strictDictionaryInference": {
                           "$ref": "sublime://pyrightconfig#/properties/strictDictionaryInference"
                         },
@@ -1067,6 +1082,36 @@
               "$ref": "#/definitions/diagnostic",
               "default": "warning",
               "title": "Controls reporting of wildcard import from external library"
+            },
+            "reportUnreachable": {
+              "$id": "#/properties/reportUnreachable",
+              "$ref": "#/definitions/diagnostic",
+              "title": "Controls reporting of unreachable code",
+              "default": "none"
+            },
+            "reportAny": {
+              "$id": "#/properties/reportAny",
+              "$ref": "#/definitions/diagnostic",
+              "title": "Controls reporting of values typed as `Any`",
+              "default": "none"
+            },
+            "reportIgnoreCommentWithoutRule": {
+              "$id": "#/properties/reportIgnoreCommentWithoutRule",
+              "$ref": "#/definitions/diagnostic",
+              "title": "Controls reporting `# type: ignore` and `# pyright: ignore` comments without specifying a rule",
+              "default": "none"
+            },
+            "reportPrivateLocalImportUsage": {
+              "$id": "#/properties/reportPrivateLocalImportUsage",
+              "$ref": "#/definitions/diagnostic",
+              "title": "Controls reporting of improper usage of symbols imported from a non-\"py.typed\" module that are not re-exported from that module. Should be used along with `reportPrivateImportUsage`",
+              "default": "none"
+            },
+            "reportImplicitRelativeImport": {
+              "$id": "#/properties/reportImplicitRelativeImport",
+              "$ref": "#/definitions/diagnostic",
+              "title": "Controls reporting of non-relative imports that do not specify the full path to the module.",
+              "default": "none"
             },
             "strict": {
               "$id": "#/properties/strict",
