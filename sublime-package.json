@@ -21,32 +21,6 @@
                 "settings": {
                   "additionalProperties": false,
                   "properties": {
-                    "basedpyright.dev_environment": {
-                      "default": "",
-                      "description": "Enables the pre-defined environment setup for specific developing needs.",
-                      "enum": [
-                        "",
-                        "sublime_text",
-                        "sublime_text_33",
-                        "sublime_text_38"
-                      ],
-                      "markdownEnumDescriptions": [
-                        "No modifications applied.",
-                        "Suitable for people who are developing ST python plugins. The Python version which the developed plugin runs on will be used. - `sys.path` from the plugin_host will be added into \"basedpyright.analysis.extraPaths\" so that ST package dependencies can be resolved by the LSP server.",
-                        "Similar to \"sublime_text\" but Python 3.3 forced.",
-                        "Similar to \"sublime_text\" but Python 3.8 forced."
-                      ]
-                    },
-                    "basedpyright.disableLanguageServices": {
-                      "default": false,
-                      "description": "Disables type completion, definitions, and references.",
-                      "type": "boolean"
-                    },
-                    "basedpyright.disableOrganizeImports": {
-                      "default": false,
-                      "description": "Disables the \"Organize Imports\" command.",
-                      "type": "boolean"
-                    },
                     "basedpyright.analysis.autoImportCompletions": {
                       "default": true,
                       "description": "Offer auto-import completions.",
@@ -90,6 +64,9 @@
                         "reportAbstractUsage": {
                           "$ref": "sublime://pyrightconfig#/properties/reportAbstractUsage"
                         },
+                        "reportAny": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportAny"
+                        },
                         "reportArgumentType": {
                           "$ref": "sublime://pyrightconfig#/properties/reportArgumentType"
                         },
@@ -126,8 +103,14 @@
                         "reportGeneralTypeIssues": {
                           "$ref": "sublime://pyrightconfig#/properties/reportGeneralTypeIssues"
                         },
+                        "reportIgnoreCommentWithoutRule": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportIgnoreCommentWithoutRule"
+                        },
                         "reportImplicitOverride": {
                           "$ref": "sublime://pyrightconfig#/properties/reportImplicitOverride"
+                        },
+                        "reportImplicitRelativeImport": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportImplicitRelativeImport"
                         },
                         "reportImplicitStringConcatenation": {
                           "$ref": "sublime://pyrightconfig#/properties/reportImplicitStringConcatenation"
@@ -222,6 +205,9 @@
                         "reportPrivateImportUsage": {
                           "$ref": "sublime://pyrightconfig#/properties/reportPrivateImportUsage"
                         },
+                        "reportPrivateLocalImportUsage": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportPrivateLocalImportUsage"
+                        },
                         "reportPrivateUsage": {
                           "$ref": "sublime://pyrightconfig#/properties/reportPrivateUsage"
                         },
@@ -249,11 +235,11 @@
                         "reportUnboundVariable": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUnboundVariable"
                         },
-                        "reportUnhashable": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportUnhashable"
-                        },
                         "reportUndefinedVariable": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUndefinedVariable"
+                        },
+                        "reportUnhashable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnhashable"
                         },
                         "reportUninitializedInstanceVariable": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUninitializedInstanceVariable"
@@ -287,6 +273,9 @@
                         },
                         "reportUnnecessaryTypeIgnoreComment": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUnnecessaryTypeIgnoreComment"
+                        },
+                        "reportUnreachable": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnreachable"
                         },
                         "reportUnsupportedDunderAll": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUnsupportedDunderAll"
@@ -329,21 +318,6 @@
                         },
                         "reportWildcardImportFromLibrary": {
                           "$ref": "sublime://pyrightconfig#/properties/reportWildcardImportFromLibrary"
-                        },
-                        "reportUnreachable": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportUnreachable"
-                        },
-                        "reportAny": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportAny"
-                        },
-                        "reportIgnoreCommentWithoutRule": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportIgnoreCommentWithoutRule"
-                        },
-                        "reportPrivateLocalImportUsage": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportPrivateLocalImportUsage"
-                        },
-                        "reportImplicitRelativeImport": {
-                          "$ref": "sublime://pyrightconfig#/properties/reportImplicitRelativeImport"
                         },
                         "strictDictionaryInference": {
                           "$ref": "sublime://pyrightconfig#/properties/strictDictionaryInference"
@@ -390,6 +364,32 @@
                     },
                     "basedpyright.analysis.useLibraryCodeForTypes": {
                       "$ref": "sublime://pyrightconfig#/properties/useLibraryCodeForTypes"
+                    },
+                    "basedpyright.dev_environment": {
+                      "default": "",
+                      "description": "Enables the pre-defined environment setup for specific developing needs.",
+                      "enum": [
+                        "",
+                        "sublime_text",
+                        "sublime_text_33",
+                        "sublime_text_38"
+                      ],
+                      "markdownEnumDescriptions": [
+                        "No modifications applied.",
+                        "Suitable for people who are developing ST python plugins. The Python version which the developed plugin runs on will be used. - `sys.path` from the plugin_host will be added into \"basedpyright.analysis.extraPaths\" so that ST package dependencies can be resolved by the LSP server.",
+                        "Similar to \"sublime_text\" but Python 3.3 forced.",
+                        "Similar to \"sublime_text\" but Python 3.8 forced."
+                      ]
+                    },
+                    "basedpyright.disableLanguageServices": {
+                      "default": false,
+                      "description": "Disables type completion, definitions, and references.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.disableOrganizeImports": {
+                      "default": false,
+                      "description": "Disables the \"Organize Imports\" command.",
+                      "type": "boolean"
                     },
                     "python.pythonPath": {
                       "default": "python",
@@ -603,6 +603,12 @@
               "default": "error",
               "title": "Controls reporting of attempted instantiation of abstract class"
             },
+            "reportAny": {
+              "$id": "#/properties/reportAny",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of values typed as `Any`"
+            },
             "reportArgumentType": {
               "$id": "#/properties/reportArgumentType",
               "$ref": "#/definitions/diagnostic",
@@ -675,11 +681,23 @@
               "default": "error",
               "title": "Controls reporting of general type issues"
             },
+            "reportIgnoreCommentWithoutRule": {
+              "$id": "#/properties/reportIgnoreCommentWithoutRule",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting `# type: ignore` and `# pyright: ignore` comments without specifying a rule"
+            },
             "reportImplicitOverride": {
               "$id": "#/properties/reportImplicitOverride",
               "$ref": "#/definitions/diagnostic",
               "default": "none",
               "title": "Controls reporting overridden methods that are missing an `@override` decorator"
+            },
+            "reportImplicitRelativeImport": {
+              "$id": "#/properties/reportImplicitRelativeImport",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of non-relative imports that do not specify the full path to the module."
             },
             "reportImplicitStringConcatenation": {
               "$id": "#/properties/reportImplicitStringConcatenation",
@@ -728,6 +746,12 @@
               "$ref": "#/definitions/diagnostic",
               "default": "error",
               "title": "Controls reporting of issues related to index operations and expressions"
+            },
+            "reportInvalidCast": {
+              "$id": "#/properties/reportInvalidCast",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of diagnostics for `cast`s to non-overlapping types."
             },
             "reportInvalidStringEscapeSequence": {
               "$id": "#/properties/reportInvalidStringEscapeSequence",
@@ -867,6 +891,12 @@
               "default": "error",
               "title": "Controls reporting of improper usage of symbol imported from a \"py.typed\" module that is not re-exported from that module"
             },
+            "reportPrivateLocalImportUsage": {
+              "$id": "#/properties/reportPrivateLocalImportUsage",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of improper usage of symbols imported from a non-\"py.typed\" module that are not re-exported from that module. Should be used along with `reportPrivateImportUsage`"
+            },
             "reportPrivateUsage": {
               "$id": "#/properties/reportPrivateUsage",
               "$ref": "#/definitions/diagnostic",
@@ -999,6 +1029,12 @@
               "default": "none",
               "title": "Controls reporting of '# type: ignore' comments that have no effect'"
             },
+            "reportUnreachable": {
+              "$id": "#/properties/reportUnreachable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of unreachable code"
+            },
             "reportUnsupportedDunderAll": {
               "$id": "#/properties/reportUnsupportedDunderAll",
               "$ref": "#/definitions/diagnostic",
@@ -1082,36 +1118,6 @@
               "$ref": "#/definitions/diagnostic",
               "default": "warning",
               "title": "Controls reporting of wildcard import from external library"
-            },
-            "reportUnreachable": {
-              "$id": "#/properties/reportUnreachable",
-              "$ref": "#/definitions/diagnostic",
-              "title": "Controls reporting of unreachable code",
-              "default": "none"
-            },
-            "reportAny": {
-              "$id": "#/properties/reportAny",
-              "$ref": "#/definitions/diagnostic",
-              "title": "Controls reporting of values typed as `Any`",
-              "default": "none"
-            },
-            "reportIgnoreCommentWithoutRule": {
-              "$id": "#/properties/reportIgnoreCommentWithoutRule",
-              "$ref": "#/definitions/diagnostic",
-              "title": "Controls reporting `# type: ignore` and `# pyright: ignore` comments without specifying a rule",
-              "default": "none"
-            },
-            "reportPrivateLocalImportUsage": {
-              "$id": "#/properties/reportPrivateLocalImportUsage",
-              "$ref": "#/definitions/diagnostic",
-              "title": "Controls reporting of improper usage of symbols imported from a non-\"py.typed\" module that are not re-exported from that module. Should be used along with `reportPrivateImportUsage`",
-              "default": "none"
-            },
-            "reportImplicitRelativeImport": {
-              "$id": "#/properties/reportImplicitRelativeImport",
-              "$ref": "#/definitions/diagnostic",
-              "title": "Controls reporting of non-relative imports that do not specify the full path to the module.",
-              "default": "none"
             },
             "strict": {
               "$id": "#/properties/strict",
