@@ -136,6 +136,9 @@
                         "reportIndexIssue": {
                           "$ref": "sublime://pyrightconfig#/properties/reportIndexIssue"
                         },
+                        "reportInvalidCast": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportInvalidCast"
+                        },
                         "reportInvalidStringEscapeSequence": {
                           "$ref": "sublime://pyrightconfig#/properties/reportInvalidStringEscapeSequence"
                         },
