@@ -5,17 +5,18 @@ all:
 
 .PHONY: ci-check
 ci-check:
- 	# mypy -p plugin
-	echo "Check: ruff (lint)"
+	# @echo "========== check: mypy =========="
+	# mypy -p plugin
+	@echo "========== check: ruff (lint) =========="
 	ruff check --diff .
-	echo "Check: ruff (format)"
+	@echo "========== check: ruff (format) =========="
 	ruff format --diff .
 
 .PHONY: ci-fix
 ci-fix:
-	echo "Fix: ruff (lint)"
+	@echo "========== fix: ruff (lint) =========="
 	ruff check --fix .
-	echo "Fix: ruff (format)"
+	@echo "========== fix: ruff (format) =========="
 	ruff format .
 
 .PHONY: update-schema
