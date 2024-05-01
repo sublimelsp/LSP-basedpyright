@@ -419,6 +419,19 @@
           "allowComments": true,
           "allowTrailingCommas": true,
           "definitions": {
+            "deprecated": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/diagnostic"
+                },
+                {
+                  "enum": [
+                    "deprecated"
+                  ],
+                  "type": "string"
+                }
+              ]
+            },
             "diagnostic": {
               "anyOf": [
                 {
@@ -430,6 +443,32 @@
                     "information",
                     "warning",
                     "error"
+                  ],
+                  "type": "string"
+                }
+              ]
+            },
+            "unreachable": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/diagnostic"
+                },
+                {
+                  "enum": [
+                    "unreachable"
+                  ],
+                  "type": "string"
+                }
+              ]
+            },
+            "unused": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/diagnostic"
+                },
+                {
+                  "enum": [
+                    "unused"
                   ],
                   "type": "string"
                 }
@@ -662,8 +701,8 @@
             },
             "reportDeprecated": {
               "$id": "#/properties/reportDeprecated",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/deprecated",
+              "default": "deprecated",
               "title": "Controls reporting of use of deprecated class or function"
             },
             "reportDuplicateImport": {
@@ -777,7 +816,7 @@
             "reportInvalidTypeForm": {
               "$id": "#/properties/reportInvalidTypeForm",
               "$ref": "#/definitions/diagnostic",
-              "default": "warning",
+              "default": "error",
               "title": "Controls reporting of type expressions that use an invalid form"
             },
             "reportInvalidTypeVarUse": {
@@ -825,7 +864,7 @@
             "reportMissingTypeStubs": {
               "$id": "#/properties/reportMissingTypeStubs",
               "$ref": "#/definitions/diagnostic",
-              "default": "warning",
+              "default": "none",
               "title": "Controls reporting of imports that cannot be resolved to type stub files"
             },
             "reportNoOverloadImplementation": {
@@ -938,8 +977,8 @@
             },
             "reportTypeCommentUsage": {
               "$id": "#/properties/reportTypeCommentUsage",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/deprecated",
+              "default": "deprecated",
               "title": "Controls reporting of deprecated type comment usage"
             },
             "reportTypedDictNotRequiredAccess": {
@@ -1034,8 +1073,8 @@
             },
             "reportUnreachable": {
               "$id": "#/properties/reportUnreachable",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/unreachable",
+              "default": "unreachable",
               "title": "Controls reporting of unreachable code"
             },
             "reportUnsupportedDunderAll": {
@@ -1076,8 +1115,8 @@
             },
             "reportUnusedClass": {
               "$id": "#/properties/reportUnusedClass",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/unused",
+              "default": "unused",
               "title": "Controls reporting of private classes that are not accessed"
             },
             "reportUnusedCoroutine": {
@@ -1088,7 +1127,7 @@
             },
             "reportUnusedExcept": {
               "$id": "#/properties/reportUnusedExcept",
-              "$ref": "#/definitions/diagnostic",
+              "$ref": "#/definitions/unreachable",
               "default": "error",
               "title": "Controls reporting of unreachable except clauses"
             },
@@ -1100,20 +1139,20 @@
             },
             "reportUnusedFunction": {
               "$id": "#/properties/reportUnusedFunction",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/unused",
+              "default": "unused",
               "title": "Controls reporting of private functions or methods that are not accessed"
             },
             "reportUnusedImport": {
               "$id": "#/properties/reportUnusedImport",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/unused",
+              "default": "unused",
               "title": "Controls reporting of imported symbols that are not referenced within the source file"
             },
             "reportUnusedVariable": {
               "$id": "#/properties/reportUnusedVariable",
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
+              "$ref": "#/definitions/unused",
+              "default": "unused",
               "title": "Controls reporting of local variables that are not accessed"
             },
             "reportWildcardImportFromLibrary": {
