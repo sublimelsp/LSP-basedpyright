@@ -280,6 +280,9 @@
                         "reportUnreachable": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUnreachable"
                         },
+                        "reportUnsafeMultipleInheritance": {
+                          "$ref": "sublime://pyrightconfig#/properties/reportUnsafeMultipleInheritance"
+                        },
                         "reportUnsupportedDunderAll": {
                           "$ref": "sublime://pyrightconfig#/properties/reportUnsupportedDunderAll"
                         },
