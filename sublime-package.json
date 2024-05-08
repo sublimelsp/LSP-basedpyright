@@ -1077,6 +1077,12 @@
               "default": "unreachable",
               "title": "Controls reporting of unreachable code"
             },
+            "reportUnsafeMultipleInheritance": {
+              "$id": "#/properties/reportUnsafeMultipleInheritance",
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of multiple inheritance where a base class's constructor may not get called"
+            },
             "reportUnsupportedDunderAll": {
               "$id": "#/properties/reportUnsupportedDunderAll",
               "$ref": "#/definitions/diagnostic",
