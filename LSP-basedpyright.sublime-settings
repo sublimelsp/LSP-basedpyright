@@ -35,13 +35,13 @@
 		// Allows a user to override the severity levels for individual diagnostics.
 		// @see https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settings
 		"basedpyright.analysis.diagnosticSeverityOverrides": {
-			"reportDuplicateImport": "warning",
-			"reportImplicitStringConcatenation": "warning",
-			"reportUnboundVariable": "warning",
-			"reportUnusedClass": "information",
-			"reportUnusedFunction": "information",
-			"reportUnusedImport": "information",
-			"reportUnusedVariable": "information",
+			// "reportDuplicateImport": "warning",
+			// "reportImplicitStringConcatenation": "warning",
+			// "reportUnboundVariable": "warning",
+			// "reportUnusedClass": "information",
+			// "reportUnusedFunction": "information",
+			// "reportUnusedImport": "information",
+			// "reportUnusedVariable": "information",
 		},
 		// Specifies the level of logging for the Output panel
 		"basedpyright.analysis.logLevel": "Information",
