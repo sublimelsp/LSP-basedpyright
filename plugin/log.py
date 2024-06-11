@@ -24,10 +24,7 @@ def log_error(message: str) -> None:
 
 
 def pluginfy_msg(msg: str, *args: Any, **kwargs: Any) -> str:
-    assert __package__
-    package_name = __package__.split(".")[0]
-
-    return msg.format(*args, _=package_name, **kwargs)
+    return msg.format(*args, _=PACKAGE_NAME, **kwargs)
 
 
 def console_msg(msg: str, *args: Any, **kwargs: Any) -> None:

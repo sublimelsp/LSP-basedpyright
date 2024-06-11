@@ -3,13 +3,11 @@ from __future__ import annotations
 import os
 import re
 import shutil
-import subprocess
 import sys
 from collections import defaultdict
-from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, cast
+from typing import cast
 
 import sublime
 from LSP.plugin import ClientConfig, DottedDict, MarkdownLangMap, Response, WorkspaceFolder
@@ -17,28 +15,9 @@ from LSP.plugin.core.protocol import CompletionItem, Hover, SignatureHelp
 from lsp_utils import NpmClientHandler
 from sublime_lib import ResourcePath
 
+from .constants import PACKAGE_NAME
 from .log import log_info, log_warning
 from .venv_finder import VenvInfo, find_venv_by_finder_names, get_finder_name_mapping
-
-assert __package__
-
-
-def plugin_loaded() -> None:
-    LspBasedpyrightPlugin.setup()
-
-
-def plugin_unloaded() -> None:
-    LspBasedpyrightPlugin.cleanup()
-
-
-def get_default_startupinfo() -> Any:
-    if sublime.platform() == "windows":
-        # do not create a window for the process
-        STARTUPINFO = subprocess.STARTUPINFO()  # type: ignore
-        STARTUPINFO.dwFlags |= subprocess.STARTF_USESHOWWINDOW  # type: ignore
-        STARTUPINFO.wShowWindow = subprocess.SW_HIDE  # type: ignore
-        return STARTUPINFO
-    return None
 
 
 @dataclass
@@ -54,7 +33,7 @@ class WindowAttr:
 
 
 class LspBasedpyrightPlugin(NpmClientHandler):
-    package_name = __package__.partition(".")[0]
+    package_name = PACKAGE_NAME
     server_directory = "language-server"
     server_binary_path = os.path.join(server_directory, "node_modules", "basedpyright", "langserver.index.js")
 
@@ -219,71 +198,6 @@ class LspBasedpyrightPlugin(NpmClientHandler):
             dep_dirs.insert(0, os.path.join(self.package_storage(), "resources", "typings", "sublime_text"))
 
         return list(filter(os.path.isdir, dep_dirs))
-
-    @classmethod
-    def python_path_from_venv(cls, workspace_folder: str | Path) -> Path | None:
-        """
-        Resolves the python binary path depending on environment variables and files in the workspace.
-
-        @see https://github.com/fannheyward/coc-pyright/blob/d58a468b1d7479a1b56906e386f44b997181e307/src/configSettings.ts#L47
-        """
-        workspace_folder = Path(workspace_folder)
-
-        def binary_from_python_path(path: str | Path) -> Path | None:
-            path = Path(path)
-            if sublime.platform() == "windows":
-                binary_path = path / "Scripts/python.exe"
-            else:
-                binary_path = path / "bin/python"
-            return binary_path if binary_path.is_file() else None
-
-        # Config file, venv resolution command, post-processing
-        venv_config_files: list[tuple[str, str, Callable[[str], Path | None] | None]] = [
-            (".pdm-python", "pdm info --python", None),
-            (".python-version", "pyenv which python", None),
-            ("Pipfile", "pipenv --py", None),
-            ("poetry.lock", "poetry env info -p", binary_from_python_path),
-        ]
-
-        for config_file, command, post_processing in venv_config_files:
-            if not (workspace_folder / config_file).is_file():
-                continue
-            print(f"{cls.name()}: INFO: {config_file} detected. Run subprocess command: {command}")
-            try:
-                stdout, stderr = map(
-                    str.rstrip,
-                    subprocess.Popen(
-                        command,
-                        cwd=workspace_folder,
-                        shell=True,
-                        startupinfo=get_default_startupinfo(),
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        universal_newlines=True,
-                    ).communicate(),
-                )
-                if stderr:
-                    print(f"{cls.name()}: INFO: subprocess stderr: {stderr}")
-                python_path = stdout
-                if post_processing:
-                    python_path = post_processing(python_path)
-                if python_path:
-                    return Path(python_path)
-            except FileNotFoundError:
-                print(f"{cls.name()}: WARN: subprocess failed with file not found: {command[0]}")
-            except PermissionError as e:
-                print(f"{cls.name()}: WARN: subprocess failed with permission error: {e}")
-            except subprocess.CalledProcessError as e:
-                print(f"{cls.name()}: WARN: subprocess failed: {str(e.output).strip()}")
-
-        # virtual environment as subfolder in project
-        for maybe_venv_path in workspace_folder.iterdir():
-            try:
-                if (maybe_venv_path / "pyvenv.cfg").is_file() and (binary := binary_from_python_path(maybe_venv_path)):
-                    return binary  # found a venv
-            except PermissionError:
-                pass
-        return None
 
     @classmethod
     def update_venv_info(
