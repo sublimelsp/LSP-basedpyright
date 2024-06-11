@@ -5,7 +5,9 @@ import re
 import shutil
 import subprocess
 import sys
+from collections import defaultdict
 from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, cast
 
@@ -14,6 +16,9 @@ from LSP.plugin import ClientConfig, DottedDict, MarkdownLangMap, Response, Work
 from LSP.plugin.core.protocol import CompletionItem, Hover, SignatureHelp
 from lsp_utils import NpmClientHandler
 from sublime_lib import ResourcePath
+
+from .log import log_info, log_warning
+from .venv_finder import VenvInfo, find_venv_by_finder_names, get_finder_name_mapping
 
 assert __package__
 
@@ -36,10 +41,25 @@ def get_default_startupinfo() -> Any:
     return None
 
 
+@dataclass
+class WindowAttr:
+    simple_python_executable: Path | None = None
+    """The path to the Python executable from `$ which python` or `$ which python3`."""
+    venv_info: VenvInfo | None = None
+    """The information of the virtual environment."""
+
+    @property
+    def preferred_python_executable(self) -> Path | None:
+        return self.venv_info.python_executable if self.venv_info else self.simple_python_executable
+
+
 class LspBasedpyrightPlugin(NpmClientHandler):
     package_name = __package__.partition(".")[0]
     server_directory = "language-server"
     server_binary_path = os.path.join(server_directory, "node_modules", "basedpyright", "langserver.index.js")
+
+    window_attrs: defaultdict[int, WindowAttr] = defaultdict(WindowAttr)
+    """Per-window attributes. I.e., per-session attributes. The key is the window ID."""
 
     @classmethod
     def required_node_version(cls) -> str:
@@ -62,6 +82,8 @@ class LspBasedpyrightPlugin(NpmClientHandler):
 
         settings.set("basedpyright.analysis.extraPaths", extraPaths)
 
+        self.update_status_bar_text()
+
     @classmethod
     def on_pre_start(
         cls,
@@ -72,9 +94,10 @@ class LspBasedpyrightPlugin(NpmClientHandler):
     ) -> str | None:
         super().on_pre_start(window, initiating_view, workspace_folders, configuration)
 
-        python_path = cls.python_path(configuration.settings, workspace_folders)
-        print(f'{cls.name()}: INFO: Using python path "{python_path}"')
-        configuration.settings.set("python.pythonPath", python_path)
+        cls.update_venv_info(configuration.settings, workspace_folders, window=window)
+        if venv_info := cls.window_attrs[window.id()].venv_info:
+            log_info(f"Using python executable: {venv_info.python_executable}")
+            configuration.settings.set("python.pythonPath", str(venv_info.python_executable))
         return None
 
     @classmethod
@@ -117,6 +140,24 @@ class LspBasedpyrightPlugin(NpmClientHandler):
     # -------------- #
     # custom methods #
     # -------------- #
+
+    def update_status_bar_text(self) -> None:
+        status_parts: list[str] = []
+
+        if not (session := self.weaksession()):
+            return
+        window_id = session.window.id()
+
+        # @todo make this into a configurable template
+        if venv_info := self.window_attrs[window_id].venv_info:
+            if venv_info.prompt:
+                status_parts.append(f"venv: {venv_info.prompt}")
+            if venv_info.python_version:
+                status_parts.append(f"py: {venv_info.python_version}")
+            if venv_info.meta.finder_name:
+                status_parts.append(f"by: {venv_info.meta.finder_name}")
+
+        session.set_config_status_async("; ".join(status_parts))
 
     def patch_markdown_content(self, content: str) -> str:
         # Add another linebreak before horizontal rule following fenced code block
@@ -178,19 +219,6 @@ class LspBasedpyrightPlugin(NpmClientHandler):
             dep_dirs.insert(0, os.path.join(self.package_storage(), "resources", "typings", "sublime_text"))
 
         return list(filter(os.path.isdir, dep_dirs))
-
-    @classmethod
-    def python_path(cls, settings: DottedDict, workspace_folders: list[WorkspaceFolder]) -> str:
-        if python_path := settings.get("python.pythonPath"):
-            return python_path
-
-        if workspace_folders:
-            workspace_folder = Path(workspace_folders[0].path)
-            for folder in (workspace_folder, *workspace_folder.parents):
-                if python_path := cls.python_path_from_venv(folder):
-                    return str(python_path)
-
-        return shutil.which("python") or shutil.which("python3") or ""
 
     @classmethod
     def python_path_from_venv(cls, workspace_folder: str | Path) -> Path | None:
@@ -256,3 +284,41 @@ class LspBasedpyrightPlugin(NpmClientHandler):
             except PermissionError:
                 pass
         return None
+
+    @classmethod
+    def update_venv_info(
+        cls,
+        settings: DottedDict,
+        workspace_folders: list[WorkspaceFolder],
+        *,
+        window: sublime.Window,
+    ) -> None:
+        window_id = window.id()
+        window_attr = cls.window_attrs[window_id]
+
+        def _update_venv_info() -> None:
+            window_attr.venv_info = None
+
+            if python_path := settings.get("python.pythonPath"):
+                window_attr.venv_info = VenvInfo.from_python_executable(python_path)
+                return
+
+            supported_finder_names = tuple(get_finder_name_mapping().keys())
+            finder_names: list[str] = settings.get("basedpyright.venv.strategies")
+            if invalid_finder_names := sorted(set(finder_names) - set(supported_finder_names)):
+                log_warning(f"The following finder names are not supported: {', '.join(invalid_finder_names)}")
+
+            if workspace_folders and (first_folder := Path(workspace_folders[0].path).resolve()):
+                for folder in (first_folder, *first_folder.parents):
+                    if venv_info := find_venv_by_finder_names(finder_names, project_dir=folder):
+                        window_attr.venv_info = venv_info
+                        return
+
+        def _update_simple_python_path() -> None:
+            window_attr.simple_python_executable = None
+
+            if python_path := shutil.which("python") or shutil.which("python3") or "":
+                window_attr.simple_python_executable = Path(python_path)
+
+        _update_simple_python_path()
+        _update_venv_info()
