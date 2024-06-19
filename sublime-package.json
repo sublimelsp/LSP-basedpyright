@@ -1702,7 +1702,7 @@
               "$ref": "#/definitions/strictSetInference"
             },
             "stubPath": {
-              "default": "",
+              "default": "./typings",
               "examples": [
                 "src/typestubs"
               ],
