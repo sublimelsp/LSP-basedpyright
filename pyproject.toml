@@ -15,7 +15,7 @@ exclude = [
   ".venv",
   ".venv-*",
   "branch-*",
-  "scripts/module_scraper",
+  "overwrites/extension/dist/typeshed-fallback",
   "stubs",
   "tests/files",
   "typings",
