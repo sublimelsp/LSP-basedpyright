@@ -37,7 +37,7 @@ Here are some ways to configure the package and the language server.
   }
   ```
 
-- Various options can only be configured through a `pyrightconfig.json` configuration file (check [basedpyright configuration](https://github.com/microsoft/basedpyright/blob/main/docs/configuration.md) for more info)
+- Various options can only be configured through a `pyrightconfig.json` configuration file (check [configuration](https://github.com/DetachHead/basedpyright/blob/main/docs/configuration.md) for more info)
 
 ### Provided Command Palette commands
 
