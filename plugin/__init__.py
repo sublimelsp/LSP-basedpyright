@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from .client import LspBasedpyrightPlugin
 from .commands import LspBasedpyrightCreateConfigurationCommand
-from .listener import LspBasedpyrightEventListener
 
 __all__ = (
     # ST: core
@@ -10,8 +9,6 @@ __all__ = (
     "plugin_unloaded",
     # ST: commands
     "LspBasedpyrightCreateConfigurationCommand",
-    # ST: listeners
-    "LspBasedpyrightEventListener",
     # ...
     "LspBasedpyrightPlugin",
 )
