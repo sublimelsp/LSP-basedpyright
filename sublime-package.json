@@ -508,7 +508,7 @@
               "type": "boolean"
             },
             "enableTypeIgnoreComments": {
-              "default": true,
+              "default": false,
               "title": "Allow \"# type: ignore\" comments",
               "type": "boolean"
             },
