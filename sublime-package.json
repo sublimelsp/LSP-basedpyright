@@ -58,6 +58,9 @@
                         "enableExperimentalFeatures": {
                           "$ref": "sublime://pyrightconfig#/definitions/enableExperimentalFeatures"
                         },
+                        "enableReachabilityAnalysis": {
+                          "$ref": "sublime://pyrightconfig#/definitions/enableReachabilityAnalysis"
+                        },
                         "enableTypeIgnoreComments": {
                           "$ref": "sublime://pyrightconfig#/definitions/enableTypeIgnoreComments"
                         },
@@ -318,6 +321,9 @@
                         },
                         "reportUnusedImport": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportUnusedImport"
+                        },
+                        "reportUnusedParameter": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedParameter"
                         },
                         "reportUnusedVariable": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportUnusedVariable"
