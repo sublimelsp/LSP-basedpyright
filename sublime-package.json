@@ -975,6 +975,11 @@
               "default": "unused",
               "title": "Controls reporting of imported symbols that are not referenced within the source file"
             },
+            "reportUnusedParameter": {
+              "$ref": "#/definitions/unused",
+              "default": "unused",
+              "title": "Controls reporting of unused function parameters"
+            },
             "reportUnusedVariable": {
               "$ref": "#/definitions/unused",
               "default": "unused",
@@ -1361,6 +1366,9 @@
                   "reportUnusedImport": {
                     "$ref": "#/definitions/reportUnusedImport"
                   },
+                  "reportUnusedParameter": {
+                    "$ref": "#/definitions/reportUnusedParameter"
+                  },
                   "reportUnusedVariable": {
                     "$ref": "#/definitions/reportUnusedVariable"
                   },
@@ -1684,6 +1692,9 @@
             },
             "reportUnusedImport": {
               "$ref": "#/definitions/reportUnusedImport"
+            },
+            "reportUnusedParameter": {
+              "$ref": "#/definitions/reportUnusedParameter"
             },
             "reportUnusedVariable": {
               "$ref": "#/definitions/reportUnusedVariable"
