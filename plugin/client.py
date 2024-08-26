@@ -4,7 +4,6 @@ import json
 import os
 import re
 import shutil
-import sys
 import weakref
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,8 +17,9 @@ from lsp_utils import NpmClientHandler
 from more_itertools import first_true
 from sublime_lib import ResourcePath
 
-from .constants import PACKAGE_NAME
-from .log import log_info, log_warning
+from .constants import PACKAGE_NAME, SERVER_SETTING_DEV_ENVIRONMENT
+from .dev_environment.helpers import get_dev_environment_handler
+from .log import log_error, log_info, log_warning
 from .template import load_string_template
 from .virtual_env.helpers import find_venv_by_finder_names, find_venv_by_python_executable
 from .virtual_env.venv_finder import BaseVenvInfo, get_finder_name_mapping
@@ -90,15 +90,19 @@ class LspBasedpyrightPlugin(NpmClientHandler):
     def on_settings_changed(self, settings: DottedDict) -> None:
         super().on_settings_changed(settings)
 
-        dev_environment = settings.get("basedpyright.dev_environment")
-        extraPaths: list[str] = settings.get("basedpyright.analysis.extraPaths") or []
+        if not ((session := self.weaksession()) and (server_dir := self._server_directory_path())):
+            return
 
-        if dev_environment in {"sublime_text", "sublime_text_33", "sublime_text_38"}:
-            py_ver = self.detect_st_py_ver(dev_environment)
-            # add package dependencies into "basedpyright.analysis.extraPaths"
-            extraPaths.extend(self.find_package_dependency_dirs(py_ver))
-
-        settings.set("basedpyright.analysis.extraPaths", extraPaths)
+        dev_environment = settings.get(SERVER_SETTING_DEV_ENVIRONMENT) or ""
+        try:
+            if handler := get_dev_environment_handler(
+                dev_environment,
+                server_dir=server_dir,
+                workspace_folders=tuple(map(str, session.get_workspace_folders())),
+            ):
+                handler.handle(settings=settings)
+        except Exception as ex:
+            log_error(f'Failed to update extra paths for dev environment "{dev_environment}": {ex}')
 
         self.update_status_bar_text()
 
@@ -211,50 +215,6 @@ class LspBasedpyrightPlugin(NpmClientHandler):
         content = re.sub(r"\n:rtype:", r"\n__Returntype:__", content)
         content = re.sub(r"\n:deprecated:", r"\n⚠️ __Deprecated:__", content)
         return content
-
-    def detect_st_py_ver(self, dev_environment: str) -> tuple[int, int]:
-        default = (3, 3)
-
-        if dev_environment == "sublime_text_33":
-            return (3, 3)
-        if dev_environment == "sublime_text_38":
-            return (3, 8)
-        if dev_environment == "sublime_text":
-            if not ((session := self.weaksession()) and (workspace_folders := session.get_workspace_folders())):
-                return default
-            # ST auto uses py38 for files in "Packages/User/"
-            if (first_folder := Path(workspace_folders[0].path).resolve()) == Path(sublime.packages_path()) / "User":
-                return (3, 8)
-            # the project wants to use py38
-            try:
-                if (first_folder / ".python-version").read_bytes().strip() == b"3.8":
-                    return (3, 8)
-            except Exception:
-                pass
-            return default
-
-        raise ValueError(f'Invalid "dev_environment" setting: {dev_environment}')
-
-    def find_package_dependency_dirs(self, py_ver: tuple[int, int] = (3, 3)) -> list[str]:
-        dep_dirs = sys.path.copy()
-
-        # replace paths for target Python version
-        # @see https://github.com/sublimelsp/LSP-pyright/issues/28
-        re_pattern = re.compile(r"(python3\.?)[38]", flags=re.IGNORECASE)
-        re_replacement = r"\g<1>8" if py_ver == (3, 8) else r"\g<1>3"
-        dep_dirs = [re_pattern.sub(re_replacement, dep_dir) for dep_dir in dep_dirs]
-
-        # move the "Packages/" to the last
-        # @see https://github.com/sublimelsp/LSP-pyright/pull/26#discussion_r520747708
-        packages_path = sublime.packages_path()
-        dep_dirs.remove(packages_path)
-        dep_dirs.append(packages_path)
-
-        # sublime stubs - add as first
-        if py_ver == (3, 3) and (server_dir := self._server_directory_path()):
-            dep_dirs.insert(0, os.path.join(server_dir, "resources", "typings", "sublime_text_py33"))
-
-        return list(filter(os.path.isdir, dep_dirs))
 
     @classmethod
     def parse_server_version(cls) -> str:
