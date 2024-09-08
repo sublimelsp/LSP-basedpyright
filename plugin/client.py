@@ -100,7 +100,7 @@ class LspBasedpyrightPlugin(NpmClientHandler):
                 server_dir=server_dir,
                 workspace_folders=tuple(map(str, session.get_workspace_folders())),
             ):
-                handler.handle(settings=settings)
+                handler.handle_(settings=settings)
         except Exception as ex:
             log_error(f'Failed to update extra paths for dev environment "{dev_environment}": {ex}')
 
