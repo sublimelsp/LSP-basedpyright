@@ -109,6 +109,9 @@
                         "reportIgnoreCommentWithoutRule": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportIgnoreCommentWithoutRule"
                         },
+                        "reportImplicitAbstractClass": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportImplicitAbstractClass"
+                        },
                         "reportImplicitOverride": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportImplicitOverride"
                         },
