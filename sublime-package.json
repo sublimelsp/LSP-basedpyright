@@ -640,6 +640,11 @@
               "default": "none",
               "title": "Controls reporting `# type: ignore` and `# pyright: ignore` comments without specifying a rule"
             },
+            "reportImplicitAbstractClass": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of abstract classes that do not explicitly extend `ABC`"
+            },
             "reportImplicitOverride": {
               "$ref": "#/definitions/diagnostic",
               "default": "none",
@@ -1173,6 +1178,9 @@
                   "reportIgnoreCommentWithoutRule": {
                     "$ref": "#/definitions/reportIgnoreCommentWithoutRule"
                   },
+                  "reportImplicitAbstractClass": {
+                    "$ref": "#/definitions/reportImplicitAbstractClass"
+                  },
                   "reportImplicitOverride": {
                     "$ref": "#/definitions/reportImplicitOverride"
                   },
@@ -1500,6 +1508,9 @@
             "reportIgnoreCommentWithoutRule": {
               "$ref": "#/definitions/reportIgnoreCommentWithoutRule"
             },
+            "reportImplicitAbstractClass": {
+              "$ref": "#/definitions/reportImplicitAbstractClass"
+            },
             "reportImplicitOverride": {
               "$ref": "#/definitions/reportImplicitOverride"
             },
@@ -1753,12 +1764,13 @@
               "type": "string"
             },
             "typeCheckingMode": {
-              "default": "all",
+              "default": "recommended",
               "enum": [
                 "off",
                 "basic",
                 "standard",
                 "strict",
+                "recommended",
                 "all"
               ],
               "title": "Specifies the default rule set to use for type checking",
