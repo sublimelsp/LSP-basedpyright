@@ -241,6 +241,9 @@
                         "reportTypedDictNotRequiredAccess": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportTypedDictNotRequiredAccess"
                         },
+                        "reportUnannotatedClassAttribute": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportUnannotatedClassAttribute"
+                        },
                         "reportUnboundVariable": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportUnboundVariable"
                         },
