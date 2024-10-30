@@ -863,6 +863,11 @@
               "default": "error",
               "title": "Controls reporting of attempts to access a non-required key in a TypedDict without a check for its presence"
             },
+            "reportUnannotatedClassAttribute": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of class variable declarations that do not have a type annotation, which is required due to performance reasons for strict validation of subclasses"
+            },
             "reportUnboundVariable": {
               "$ref": "#/definitions/diagnostic",
               "default": "error",
@@ -1313,6 +1318,9 @@
                   "reportTypedDictNotRequiredAccess": {
                     "$ref": "#/definitions/reportTypedDictNotRequiredAccess"
                   },
+                  "reportUnannotatedClassAttribute": {
+                    "$ref": "#/definitions/reportUnannotatedClassAttribute"
+                  },
                   "reportUnboundVariable": {
                     "$ref": "#/definitions/reportUnboundVariable"
                   },
@@ -1642,6 +1650,9 @@
             },
             "reportTypedDictNotRequiredAccess": {
               "$ref": "#/definitions/reportTypedDictNotRequiredAccess"
+            },
+            "reportUnannotatedClassAttribute": {
+              "$ref": "#/definitions/reportUnannotatedClassAttribute"
             },
             "reportUnboundVariable": {
               "$ref": "#/definitions/reportUnboundVariable"
