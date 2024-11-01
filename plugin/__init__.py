@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .client import LspBasedpyrightPlugin
+from .client import LspBasedpyrightPlugin, ViewEventListener
 from .commands import LspBasedpyrightCreateConfigurationCommand
 
 __all__ = (
@@ -11,6 +11,7 @@ __all__ = (
     "LspBasedpyrightCreateConfigurationCommand",
     # ...
     "LspBasedpyrightPlugin",
+    "ViewEventListener",
 )
 
 
@@ -21,5 +22,5 @@ def plugin_loaded() -> None:
 
 def plugin_unloaded() -> None:
     """Executed when this plugin is unloaded."""
-    LspBasedpyrightPlugin.window_attrs.clear()
+    LspBasedpyrightPlugin.wf_attrs.clear()
     LspBasedpyrightPlugin.cleanup()
