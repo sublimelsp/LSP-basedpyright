@@ -494,19 +494,6 @@
               "title": "Treat typing-specific aliases to standard types as deprecated",
               "type": "boolean"
             },
-            "deprecated": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/diagnostic"
-                },
-                {
-                  "enum": [
-                    "deprecated"
-                  ],
-                  "type": "string"
-                }
-              ]
-            },
             "diagnostic": {
               "anyOf": [
                 {
@@ -515,6 +502,7 @@
                 {
                   "enum": [
                     "none",
+                    "hint",
                     "information",
                     "warning",
                     "error"
@@ -622,8 +610,8 @@
               "title": "Controls reporting of attempts to redefine variables that are in all-caps"
             },
             "reportDeprecated": {
-              "$ref": "#/definitions/deprecated",
-              "default": "deprecated",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of use of deprecated class or function"
             },
             "reportDuplicateImport": {
@@ -857,8 +845,8 @@
               "title": "Controls reporting of shadowed imports of stdlib modules"
             },
             "reportTypeCommentUsage": {
-              "$ref": "#/definitions/deprecated",
-              "default": "deprecated",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of deprecated type comment usage"
             },
             "reportTypedDictNotRequiredAccess": {
@@ -942,8 +930,8 @@
               "title": "Controls reporting of '# type: ignore' comments that have no effect'"
             },
             "reportUnreachable": {
-              "$ref": "#/definitions/unreachable",
-              "default": "unreachable",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of unreachable code"
             },
             "reportUnsafeMultipleInheritance": {
@@ -982,8 +970,8 @@
               "title": "Controls reporting of call expressions whose results are not consumed"
             },
             "reportUnusedClass": {
-              "$ref": "#/definitions/unused",
-              "default": "unused",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of private classes that are not accessed"
             },
             "reportUnusedCoroutine": {
@@ -992,7 +980,7 @@
               "title": "Controls reporting of call expressions that returns Coroutine whose results are not consumed"
             },
             "reportUnusedExcept": {
-              "$ref": "#/definitions/unreachable",
+              "$ref": "#/definitions/diagnostic",
               "default": "error",
               "title": "Controls reporting of unreachable except clauses"
             },
@@ -1002,23 +990,23 @@
               "title": "Controls reporting of simple expressions whose value is not used in any way"
             },
             "reportUnusedFunction": {
-              "$ref": "#/definitions/unused",
-              "default": "unused",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of private functions or methods that are not accessed"
             },
             "reportUnusedImport": {
-              "$ref": "#/definitions/unused",
-              "default": "unused",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of imported symbols that are not referenced within the source file"
             },
             "reportUnusedParameter": {
-              "$ref": "#/definitions/unused",
-              "default": "unused",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of unused function parameters"
             },
             "reportUnusedVariable": {
-              "$ref": "#/definitions/unused",
-              "default": "unused",
+              "$ref": "#/definitions/diagnostic",
+              "default": "hint",
               "title": "Controls reporting of local variables that are not accessed"
             },
             "reportWildcardImportFromLibrary": {
@@ -1045,32 +1033,6 @@
               "default": false,
               "title": "Infer strict types for set expressions",
               "type": "boolean"
-            },
-            "unreachable": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/diagnostic"
-                },
-                {
-                  "enum": [
-                    "unreachable"
-                  ],
-                  "type": "string"
-                }
-              ]
-            },
-            "unused": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/diagnostic"
-                },
-                {
-                  "enum": [
-                    "unused"
-                  ],
-                  "type": "string"
-                }
-              ]
             }
           },
           "description": "Pyright Configuration Schema",
