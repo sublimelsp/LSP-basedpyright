@@ -100,6 +100,9 @@
                         "reportDuplicateImport": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
                         },
+                        "reportExplicitAny": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportExplicitAny"
+                        },
                         "reportFunctionMemberAccess": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportFunctionMemberAccess"
                         },
@@ -340,6 +343,9 @@
                         "strictDictionaryInference": {
                           "$ref": "sublime://pyrightconfig#/definitions/strictDictionaryInference"
                         },
+                        "strictGenericNarrowing": {
+                          "$ref": "sublime://pyrightconfig#/definitions/strictGenericNarrowing"
+                        },
                         "strictListInference": {
                           "$ref": "sublime://pyrightconfig#/definitions/strictListInference"
                         },
@@ -567,7 +573,7 @@
             "reportAny": {
               "$ref": "#/definitions/diagnostic",
               "default": "none",
-              "title": "Controls reporting of values typed as `Any`"
+              "title": "Controls reporting of expressions typed as `Any`"
             },
             "reportArgumentType": {
               "$ref": "#/definitions/diagnostic",
@@ -618,6 +624,11 @@
               "$ref": "#/definitions/diagnostic",
               "default": "none",
               "title": "Controls reporting of symbols or modules that are imported more than once"
+            },
+            "reportExplicitAny": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of type annotations that use the `Any` type"
             },
             "reportFunctionMemberAccess": {
               "$ref": "#/definitions/diagnostic",
@@ -1019,6 +1030,11 @@
               "title": "Infer strict types for dictionary expressions",
               "type": "boolean"
             },
+            "strictGenericNarrowing": {
+              "default": false,
+              "title": "Use generic bounds instead of `Any` when narrowing",
+              "type": "boolean"
+            },
             "strictListInference": {
               "default": false,
               "title": "Infer strict types for list expressions",
@@ -1141,6 +1157,9 @@
                   },
                   "reportDuplicateImport": {
                     "$ref": "#/definitions/reportDuplicateImport"
+                  },
+                  "reportExplicitAny": {
+                    "$ref": "#/definitions/reportExplicitAny"
                   },
                   "reportFunctionMemberAccess": {
                     "$ref": "#/definitions/reportFunctionMemberAccess"
@@ -1388,6 +1407,9 @@
                   "strictDictionaryInference": {
                     "$ref": "#/definitions/strictDictionaryInference"
                   },
+                  "strictGenericNarrowing": {
+                    "$ref": "#/definitions/strictGenericNarrowing"
+                  },
                   "strictListInference": {
                     "$ref": "#/definitions/strictListInference"
                   },
@@ -1474,6 +1496,9 @@
             },
             "reportDuplicateImport": {
               "$ref": "#/definitions/reportDuplicateImport"
+            },
+            "reportExplicitAny": {
+              "$ref": "#/definitions/reportExplicitAny"
             },
             "reportFunctionMemberAccess": {
               "$ref": "#/definitions/reportFunctionMemberAccess"
@@ -1723,6 +1748,9 @@
             },
             "strictDictionaryInference": {
               "$ref": "#/definitions/strictDictionaryInference"
+            },
+            "strictGenericNarrowing": {
+              "$ref": "#/definitions/strictGenericNarrowing"
             },
             "strictListInference": {
               "$ref": "#/definitions/strictListInference"
