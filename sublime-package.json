@@ -100,6 +100,9 @@
                         "reportDuplicateImport": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
                         },
+                        "reportExplicitAny": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
+                        },
                         "reportFunctionMemberAccess": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportFunctionMemberAccess"
                         },
@@ -339,6 +342,9 @@
                         },
                         "strictDictionaryInference": {
                           "$ref": "sublime://pyrightconfig#/definitions/strictDictionaryInference"
+                        },
+                        "strictGenericNarrowing": {
+                          "$ref": "sublime://pyrightconfig#/definitions/strictGenericNarrowing"
                         },
                         "strictListInference": {
                           "$ref": "sublime://pyrightconfig#/definitions/strictListInference"
