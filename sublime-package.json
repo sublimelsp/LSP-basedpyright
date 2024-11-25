@@ -101,7 +101,7 @@
                           "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
                         },
                         "reportExplicitAny": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
+                          "$ref": "sublime://pyrightconfig#/definitions/reportExplicitAny"
                         },
                         "reportFunctionMemberAccess": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportFunctionMemberAccess"
