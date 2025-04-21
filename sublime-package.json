@@ -675,6 +675,11 @@
               "default": "error",
               "title": "Controls reporting of method overrides in subclasses that redefine the method in an incompatible way"
             },
+            "reportIncompatibleUnannotatedOverride": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting diagnostics for overrides in subclasses that redefine a variable in an incompatible way"
+            },
             "reportIncompatibleVariableOverride": {
               "$ref": "#/definitions/diagnostic",
               "default": "error",
@@ -699,6 +704,11 @@
               "$ref": "#/definitions/diagnostic",
               "default": "error",
               "title": "Controls reporting of issues related to index operations and expressions"
+            },
+            "reportInvalidAbstractMethod": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting diagnostics for usages of `@abstractmethod` on a non-abstract class"
             },
             "reportInvalidCast": {
               "$ref": "#/definitions/diagnostic",
@@ -1056,6 +1066,11 @@
             "analyzeUnannotatedFunctions": {
               "$ref": "#/definitions/analyzeUnannotatedFunctions"
             },
+            "baselineFile": {
+              "default": "",
+              "title": "Path to a baseline file that contains a list of diagnostics that should be ignored. defaults to `./.basedpyright/baseline.json`",
+              "type": "string"
+            },
             "defineConstant": {
               "additionalProperties": {
                 "title": "Value of constant (boolean or string)",
@@ -1188,6 +1203,9 @@
                   "reportIncompatibleMethodOverride": {
                     "$ref": "#/definitions/reportIncompatibleMethodOverride"
                   },
+                  "reportIncompatibleUnannotatedOverride": {
+                    "$ref": "#/definitions/reportIncompatibleUnannotatedOverride"
+                  },
                   "reportIncompatibleVariableOverride": {
                     "$ref": "#/definitions/reportIncompatibleVariableOverride"
                   },
@@ -1202,6 +1220,9 @@
                   },
                   "reportIndexIssue": {
                     "$ref": "#/definitions/reportIndexIssue"
+                  },
+                  "reportInvalidAbstractMethod": {
+                    "$ref": "#/definitions/reportInvalidAbstractMethod"
                   },
                   "reportInvalidCast": {
                     "$ref": "#/definitions/reportInvalidCast"
@@ -1527,6 +1548,9 @@
             "reportIncompatibleMethodOverride": {
               "$ref": "#/definitions/reportIncompatibleMethodOverride"
             },
+            "reportIncompatibleUnannotatedOverride": {
+              "$ref": "#/definitions/reportIncompatibleUnannotatedOverride"
+            },
             "reportIncompatibleVariableOverride": {
               "$ref": "#/definitions/reportIncompatibleVariableOverride"
             },
@@ -1541,6 +1565,9 @@
             },
             "reportIndexIssue": {
               "$ref": "#/definitions/reportIndexIssue"
+            },
+            "reportInvalidAbstractMethod": {
+              "$ref": "#/definitions/reportInvalidAbstractMethod"
             },
             "reportInvalidCast": {
               "$ref": "#/definitions/reportInvalidCast"
