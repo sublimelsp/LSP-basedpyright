@@ -49,6 +49,9 @@
                         "analyzeUnannotatedFunctions": {
                           "$ref": "sublime://pyrightconfig#/definitions/analyzeUnannotatedFunctions"
                         },
+                        "baselineFile": {
+                          "$ref": "sublime://pyrightconfig#/definitions/baselineFile"
+                        },
                         "deprecateTypingAliases": {
                           "$ref": "sublime://pyrightconfig#/definitions/deprecateTypingAliases"
                         },
@@ -130,6 +133,9 @@
                         "reportIncompatibleMethodOverride": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleMethodOverride"
                         },
+                        "reportIncompatibleUnannotatedOverride": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleUnannotatedOverride"
+                        },
                         "reportIncompatibleVariableOverride": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleVariableOverride"
                         },
@@ -144,6 +150,9 @@
                         },
                         "reportIndexIssue": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportIndexIssue"
+                        },
+                        "reportInvalidAbstractMethod": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidAbstractMethod"
                         },
                         "reportInvalidCast": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportInvalidCast"
@@ -494,6 +503,11 @@
               "default": true,
               "title": "Analyze and report diagnostics for functions that have no annotations",
               "type": "boolean"
+            },
+            "baselineFile": {
+              "default": "",
+              "title": "Path to a baseline file that contains a list of diagnostics that should be ignored. defaults to `./.basedpyright/baseline.json`",
+              "type": "string"
             },
             "deprecateTypingAliases": {
               "default": false,
@@ -1112,6 +1126,9 @@
                 "properties": {
                   "analyzeUnannotatedFunctions": {
                     "$ref": "#/definitions/analyzeUnannotatedFunctions"
+                  },
+                  "baselineFile": {
+                    "$ref": "#/definitions/baselineFile"
                   },
                   "deprecateTypingAliases": {
                     "$ref": "#/definitions/deprecateTypingAliases"
