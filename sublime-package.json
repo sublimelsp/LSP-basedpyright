@@ -504,11 +504,6 @@
               "title": "Analyze and report diagnostics for functions that have no annotations",
               "type": "boolean"
             },
-            "baselineFile": {
-              "default": "",
-              "title": "Path to a baseline file that contains a list of diagnostics that should be ignored. defaults to `./.basedpyright/baseline.json`",
-              "type": "string"
-            },
             "deprecateTypingAliases": {
               "default": false,
               "title": "Treat typing-specific aliases to standard types as deprecated",
@@ -1126,9 +1121,6 @@
                 "properties": {
                   "analyzeUnannotatedFunctions": {
                     "$ref": "#/definitions/analyzeUnannotatedFunctions"
-                  },
-                  "baselineFile": {
-                    "$ref": "#/definitions/baselineFile"
                   },
                   "deprecateTypingAliases": {
                     "$ref": "#/definitions/deprecateTypingAliases"
