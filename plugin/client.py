@@ -18,7 +18,6 @@ from .dev_environment.helpers import get_dev_environment_handler
 from .log import log_error, log_warning
 from .utils_lsp import AbstractLspPythonPlugin, find_workspace_folder, update_view_status_bar_text, uri_to_file_path
 from .virtual_env.helpers import find_venv_by_finder_names
-from .virtual_env.venv_info import Pep405VenvInfo
 
 
 class ViewEventListener(sublime_plugin.ViewEventListener):
@@ -121,29 +120,21 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
             return
 
     def on_workspace_configuration(self, params: Any, configuration: dict[str, Any]) -> dict[str, Any]:
-        # provide detected venv information from the workspace folder
+        if not ((session := self.weaksession()) and (params.get("section") == "python")):
+            return configuration
+
+        scope_uri: str = params.get("scopeUri") or ""
+        file_path = uri_to_file_path(scope_uri)
+        wf_path = find_workspace_folder(session.window, file_path) if file_path else None
+
+        # provide detected venv information
         # note that `pyrightconfig.json` seems to be auto-prioritized by the server
-        # in case there is no active workspace config, we also fall back to looking for a "virtualenv"
-        #  key in the project_data. This lets us support ad hoc scripts using the Virtualenv plugin's
-        #  "Activate Virtualenv" command. See issue #70.
         if (
-            (session := self.weaksession())
-            and (params["section"] == "python")
-            and (
-                (
-                    (scope_uri := params.get("scopeUri"))
-                    and (file_path := uri_to_file_path(scope_uri))
-                    and (wf_path := find_workspace_folder(session.window, file_path))
-                    and (venv_strategies := session.config.settings.get("venvStrategies"))
-                    and (venv_info := find_venv_by_finder_names(venv_strategies, project_dir=wf_path))
-                )
-                or (
-                    (active_venv_dir := session.window.project_data().get("virtualenv"))
-                    and (venv_info := Pep405VenvInfo.from_venv_dir(active_venv_dir))
-                )
-            )
+            # ...
+            (venv_strategies := session.config.settings.get("venvStrategies"))
+            and (venv_info := find_venv_by_finder_names(venv_strategies, project_dir=wf_path, session=session))
         ):
-            if wf_path is not None:
+            if wf_path:
                 self.wf_attrs[wf_path].venv_info = venv_info
             # When ST just starts, server session hasn't been created yet.
             # So `on_activated` can't add full information for the initial view and hence we handle it here.
