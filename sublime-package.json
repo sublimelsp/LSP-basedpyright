@@ -466,7 +466,7 @@
                           "poetry",
                           "pyenv",
                           "rye",
-                          "st_project_data",
+                          "st_project_data"
                         ],
                         "markdownEnumDescriptions": [
                           "Finds the virtual environment with any subdirectory.",
