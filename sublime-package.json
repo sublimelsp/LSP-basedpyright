@@ -244,9 +244,6 @@
                         "reportSelfClsParameterName": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportSelfClsParameterName"
                         },
-                        "reportShadowedImports": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportShadowedImports"
-                        },
                         "reportTypeCommentUsage": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportTypeCommentUsage"
                         },
@@ -531,6 +528,11 @@
             "disableBytesTypePromotions": {
               "default": true,
               "title": "Do not treat `bytearray` and `memoryview` as implicit subtypes of `bytes`",
+              "type": "boolean"
+            },
+            "enableBasedFeatures": {
+              "default": false,
+              "title": "Enable the use of basedpyright-specific experimental features",
               "type": "boolean"
             },
             "enableExperimentalFeatures": {
@@ -870,11 +872,6 @@
               "$ref": "#/definitions/diagnostic",
               "default": "warning",
               "title": "Controls reporting missing or misnamed self parameters"
-            },
-            "reportShadowedImports": {
-              "$ref": "#/definitions/diagnostic",
-              "default": "none",
-              "title": "Controls reporting of shadowed imports of stdlib modules"
             },
             "reportTypeCommentUsage": {
               "$ref": "#/definitions/diagnostic",
@@ -1325,9 +1322,6 @@
                   "reportSelfClsParameterName": {
                     "$ref": "#/definitions/reportSelfClsParameterName"
                   },
-                  "reportShadowedImports": {
-                    "$ref": "#/definitions/reportShadowedImports"
-                  },
                   "reportTypeCommentUsage": {
                     "$ref": "#/definitions/reportTypeCommentUsage"
                   },
@@ -1669,9 +1663,6 @@
             },
             "reportSelfClsParameterName": {
               "$ref": "#/definitions/reportSelfClsParameterName"
-            },
-            "reportShadowedImports": {
-              "$ref": "#/definitions/reportShadowedImports"
             },
             "reportTypeCommentUsage": {
               "$ref": "#/definitions/reportTypeCommentUsage"
