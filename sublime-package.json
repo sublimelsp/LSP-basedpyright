@@ -241,6 +241,9 @@
                         "reportReturnType": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportReturnType"
                         },
+                        "reportSelfClsDefault": {
+                          "$ref": "sublime://pyrightconfig#/definitions/reportSelfClsDefault"
+                        },
                         "reportSelfClsParameterName": {
                           "$ref": "sublime://pyrightconfig#/definitions/reportSelfClsParameterName"
                         },
