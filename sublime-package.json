@@ -868,6 +868,11 @@
               "default": "error",
               "title": "Controls reporting of function return type incompatibility"
             },
+            "reportSelfClsDefault": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting diagnostics for providing a default value for a `self` or `cls` parameter"
+            },
             "reportSelfClsParameterName": {
               "$ref": "#/definitions/diagnostic",
               "default": "warning",
@@ -1319,6 +1324,9 @@
                   "reportReturnType": {
                     "$ref": "#/definitions/reportReturnType"
                   },
+                  "reportSelfClsDefault": {
+                    "$ref": "#/definitions/reportSelfClsDefault"
+                  },
                   "reportSelfClsParameterName": {
                     "$ref": "#/definitions/reportSelfClsParameterName"
                   },
@@ -1660,6 +1668,9 @@
             },
             "reportReturnType": {
               "$ref": "#/definitions/reportReturnType"
+            },
+            "reportSelfClsDefault": {
+              "$ref": "#/definitions/reportSelfClsDefault"
             },
             "reportSelfClsParameterName": {
               "$ref": "#/definitions/reportSelfClsParameterName"
