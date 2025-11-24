@@ -122,6 +122,8 @@ VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS = sorted(
 class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
     """This handler selects the most appropriate handler based on the detected project Python version."""
 
+    DOT_PYTHON_VERSION_RE = re.compile(rb"^(\d+)\.(\d+)", re.MULTILINE)
+
     def handle_(self, *, settings: DottedDict) -> None:
         handler_cls = (
             self.resolve_handler_cls(self.detect_project_python_version())
