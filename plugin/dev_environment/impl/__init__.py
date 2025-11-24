@@ -2,18 +2,11 @@ from __future__ import annotations
 
 from .blender import BlenderDevEnvironmentHandler
 from .gdb import GdbDevEnvironmentHandler
-from .sublime_text import (
-    SublimeText33DevEnvironmentHandler,
-    SublimeText38DevEnvironmentHandler,
-    SublimeText313DevEnvironmentHandler,
-    SublimeTextDevEnvironmentHandler,
-)
+from .sublime_text import VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS, SublimeTextDevEnvironmentHandler
 
 __all__ = (
     "BlenderDevEnvironmentHandler",
     "GdbDevEnvironmentHandler",
-    "SublimeText33DevEnvironmentHandler",
-    "SublimeText38DevEnvironmentHandler",
-    "SublimeText313DevEnvironmentHandler",
+    "VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS",
     "SublimeTextDevEnvironmentHandler",
 )

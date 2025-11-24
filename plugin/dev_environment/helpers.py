@@ -5,8 +5,12 @@ from typing import Generator, Sequence
 
 from more_itertools import first_true
 
-from .impl import BlenderDevEnvironmentHandler, GdbDevEnvironmentHandler, SublimeTextDevEnvironmentHandler
-from .impl.sublime_text import VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS
+from .impl import (
+    VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS,
+    BlenderDevEnvironmentHandler,
+    GdbDevEnvironmentHandler,
+    SublimeTextDevEnvironmentHandler,
+)
 from .interfaces import BaseDevEnvironmentHandler
 
 
@@ -32,4 +36,4 @@ def list_dev_environment_handler_classes() -> Generator[type[BaseDevEnvironmentH
     yield BlenderDevEnvironmentHandler
     yield GdbDevEnvironmentHandler
     yield from VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS  # sublime_text_33, sublime_text_38, etc
-    yield SublimeTextDevEnvironmentHandler
+    yield SublimeTextDevEnvironmentHandler  # sublime_text

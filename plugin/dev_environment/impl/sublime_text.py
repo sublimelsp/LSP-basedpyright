@@ -146,7 +146,7 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
 
         # detect from project's ".python-version" file
         if (py_verion_file := (project_dir / ".python-version")).is_file() and (
-            m := re.match(b"^(\\d+)\\.(\\d+)$", py_verion_file.read_bytes(), re.MULTILINE)
+            m := self.DOT_PYTHON_VERSION_RE.match(py_verion_file.read_bytes())
         ):
             return (int(m[1]), int(m[2]))
 
