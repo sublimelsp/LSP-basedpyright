@@ -125,8 +125,7 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
     def handle_(self, *, settings: DottedDict) -> None:
         handler_cls = (
             self.resolve_handler_cls(self.detect_project_python_version())
-            # the oldest one as the fallback
-            or self.resolve_handler_cls(OLDEST_ST_PYTHON_VERSION)
+            or self.resolve_handler_cls(OLDEST_ST_PYTHON_VERSION)  # fallback to the oldest one
         )
         assert handler_cls
 
