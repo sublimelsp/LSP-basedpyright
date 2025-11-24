@@ -5,6 +5,7 @@ from .gdb import GdbDevEnvironmentHandler
 from .sublime_text import (
     SublimeText33DevEnvironmentHandler,
     SublimeText38DevEnvironmentHandler,
+    SublimeText313DevEnvironmentHandler,
     SublimeTextDevEnvironmentHandler,
 )
 
@@ -13,5 +14,6 @@ __all__ = (
     "GdbDevEnvironmentHandler",
     "SublimeText33DevEnvironmentHandler",
     "SublimeText38DevEnvironmentHandler",
+    "SublimeText313DevEnvironmentHandler",
     "SublimeTextDevEnvironmentHandler",
 )

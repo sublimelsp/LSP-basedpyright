@@ -10,6 +10,7 @@ from .impl import (
     GdbDevEnvironmentHandler,
     SublimeText33DevEnvironmentHandler,
     SublimeText38DevEnvironmentHandler,
+    SublimeText313DevEnvironmentHandler,
     SublimeTextDevEnvironmentHandler,
 )
 from .interfaces import BaseDevEnvironmentHandler
@@ -38,4 +39,5 @@ def list_dev_environment_handler_classes() -> Generator[type[BaseDevEnvironmentH
     yield GdbDevEnvironmentHandler
     yield SublimeText33DevEnvironmentHandler
     yield SublimeText38DevEnvironmentHandler
+    yield SublimeText313DevEnvironmentHandler
     yield SublimeTextDevEnvironmentHandler
