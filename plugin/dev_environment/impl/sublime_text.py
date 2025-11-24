@@ -112,15 +112,15 @@ def list_all_subclasses(
         yield from list_all_subclasses(leaf, skip_self=False, skip_abstract=skip_abstract)
 
 
-# should be sorted by python_version ascending
 VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS = sorted(
     list_all_subclasses(BaseVersionedSublimeTextDevEnvironmentHandler, skip_abstract=True),  # type: ignore
     key=lambda cls: cls.python_version,
 )
+"""Collects all versioned ST dev environment handlers. Sorted by `python_version` ascending."""
 
 
 class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
-    """This handler selects the most appropriate handler based on the detected project Python version."""
+    """This handler uses the most appropriate handler based on the detected Sublime Text plugin Python version."""
 
     DOT_PYTHON_VERSION_RE = re.compile(rb"^(\d+)\.(\d+)", re.MULTILINE)
 
