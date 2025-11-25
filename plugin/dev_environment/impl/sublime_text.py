@@ -125,12 +125,7 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
     DOT_PYTHON_VERSION_RE = re.compile(rb"^(\d+)\.(\d+)", re.MULTILINE)
 
     def handle_(self, *, settings: DottedDict) -> None:
-        handler_cls = (
-            self.resolve_handler_cls(self.detect_project_python_version())
-            or self.resolve_handler_cls(OLDEST_ST_PYTHON_VERSION)  # fallback to the oldest one
-        )
-        assert handler_cls
-
+        handler_cls = self.resolve_handler_cls(self.detect_project_python_version())
         handler = handler_cls(server_dir=self.server_dir, workspace_folders=self.workspace_folders)
         return handler.handle(settings=settings)
 
@@ -153,10 +148,11 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
         return OLDEST_ST_PYTHON_VERSION
 
     @staticmethod
-    def resolve_handler_cls(
-        wanted_version: tuple[int, int],
-    ) -> type[BaseVersionedSublimeTextDevEnvironmentHandler] | None:
+    def resolve_handler_cls(wanted_version: tuple[int, int]) -> type[BaseVersionedSublimeTextDevEnvironmentHandler]:
+        """Returns the best matching handler class for the wanted Python version."""
+        available_handlers = [cls for cls in VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS if cls.is_available()]
         return first_true(
-            VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS,
-            pred=lambda cls: cls.is_available() and cls.python_version >= wanted_version,
+            available_handlers,
+            pred=lambda cls: cls.python_version >= wanted_version,
+            default=available_handlers[-1],  # fallback latest available Python version
         )
