@@ -6,36 +6,24 @@ import re
 import sys
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Generator, TypeVar
+from typing import Generator, Tuple, TypeVar
 
 import sublime
 from LSP.plugin.core.collections import DottedDict
 from LSP.plugin.core.constants import ST_VERSION
 from more_itertools import first_true
+from typing_extensions import TypeAlias
 
 from ..interfaces import BaseDevEnvironmentHandler
 
 T = TypeVar("T")
 
-
-def get_latest_st_python_version() -> tuple[int, int]:
-    if ST_VERSION >= 4201:
-        return (3, 13)
-    if ST_VERSION >= 4107:
-        return (3, 8)
-    return (3, 3)
-
-
-def get_oldest_st_python_version() -> tuple[int, int]:
-    return (3, 3)
-
-
-LATEST_ST_PYTHON_VERSION = get_latest_st_python_version()
-OLDEST_ST_PYTHON_VERSION = get_oldest_st_python_version()
+VERSION_TUPLE_2: TypeAlias = Tuple[int, int]
+"""E.g., `(3, 8)` means Python 3.8."""
 
 
 class BaseVersionedSublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler, ABC):
-    python_version: tuple[int, int] = (-1, -1)
+    python_version: VERSION_TUPLE_2 = (-1, -1)
     python_version_no_dot: str = ""
 
     @classmethod
@@ -118,6 +106,10 @@ VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS = sorted(
 )
 """Collects all versioned ST dev environment handlers. Sorted by `python_version` ascending."""
 
+AVAILABLE_ST_DEV_ENV_HANDLERS = [cls for cls in VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS if cls.is_available()]
+LATEST_ST_DEV_ENV_HANDLER = AVAILABLE_ST_DEV_ENV_HANDLERS[-1]
+OLDEST_ST_DEV_ENV_HANDLER = AVAILABLE_ST_DEV_ENV_HANDLERS[0]
+
 
 class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
     """This handler uses the most appropriate handler based on the detected Sublime Text plugin Python version."""
@@ -129,15 +121,15 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
         handler = handler_cls(server_dir=self.server_dir, workspace_folders=self.workspace_folders)
         return handler.handle(settings=settings)
 
-    def detect_project_python_version(self) -> tuple[int, int]:
+    def detect_project_python_version(self) -> VERSION_TUPLE_2:
         try:
             project_dir = Path(self.workspace_folders[0]).resolve()
         except Exception:
-            return OLDEST_ST_PYTHON_VERSION
+            return OLDEST_ST_DEV_ENV_HANDLER.python_version
 
         # ST auto uses the latest Python for files in "Packages/User/"
         if (Path(sublime.packages_path()) / "User") in (project_dir, *project_dir.parents):
-            return LATEST_ST_PYTHON_VERSION
+            return LATEST_ST_DEV_ENV_HANDLER.python_version
 
         # detect from project's ".python-version" file
         if (py_version_file := (project_dir / ".python-version")).is_file() and (
@@ -145,14 +137,13 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
         ):
             return (int(m[1]), int(m[2]))
 
-        return OLDEST_ST_PYTHON_VERSION
+        return OLDEST_ST_DEV_ENV_HANDLER.python_version
 
     @staticmethod
-    def resolve_handler_cls(wanted_version: tuple[int, int]) -> type[BaseVersionedSublimeTextDevEnvironmentHandler]:
+    def resolve_handler_cls(wanted_version: VERSION_TUPLE_2) -> type[BaseVersionedSublimeTextDevEnvironmentHandler]:
         """Returns the best matching handler class for the wanted Python version."""
-        available_handlers = [cls for cls in VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS if cls.is_available()]
         return first_true(
-            available_handlers,
+            AVAILABLE_ST_DEV_ENV_HANDLERS,
             pred=lambda cls: cls.python_version >= wanted_version,
-            default=available_handlers[-1],  # fallback latest available Python version
+            default=LATEST_ST_DEV_ENV_HANDLER,
         )
