@@ -31,6 +31,10 @@ class BaseVersionedSublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler, A
     def is_available(cls) -> bool:
         """Check if this handler is available in the current ST version."""
 
+    @classmethod
+    def can_support(cls, dev_environment: str) -> bool:
+        return super().can_support(dev_environment) and cls.is_available()
+
     def handle_(self, *, settings: DottedDict) -> None:
         self._inject_extra_paths(settings=settings, paths=self.find_package_dependency_dirs())
 
