@@ -27,6 +27,10 @@ class BaseVersionedSublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler, A
     python_version_no_dot: str = ""
 
     @classmethod
+    def name(cls) -> str:
+        return f"sublime_text_{cls.python_version_no_dot}"
+
+    @classmethod
     @abstractmethod
     def is_available(cls) -> bool:
         """Check if this handler is available in the current ST version."""
@@ -119,6 +123,10 @@ class SublimeTextDevEnvironmentHandler(BaseDevEnvironmentHandler):
     """This handler uses the most appropriate handler based on the detected Sublime Text plugin Python version."""
 
     DOT_PYTHON_VERSION_RE = re.compile(rb"^(\d+)\.(\d+)", re.MULTILINE)
+
+    @classmethod
+    def name(cls) -> str:
+        return "sublime_text"
 
     def handle_(self, *, settings: DottedDict) -> None:
         handler_cls = self.resolve_handler_cls(self.detect_project_python_version())
