@@ -10,7 +10,7 @@ from urllib.request import urlopen
 PACKAGE_NAME = "LSP-basedpyright"
 
 PROJECT_ROOT = Path(__file__).parents[1]
-PYRIGHTCONFIG_SCHEMA_ID = "sublime://pyrightconfig"
+SCHEMA_ID = "sublime://basedpyright"
 PYRIGHT_CONFIGURATION_SCHEMA_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json"
 SUBLIME_PACKAGE_JSON_PATH = PROJECT_ROOT / "sublime-package.json"
 # Keys that are in the pyrightconfig.json schema but should not raise a comment when not present in the LSP schema.
@@ -70,7 +70,7 @@ def update_schema(sublime_package_json: JsonDict, pyrightconfig_schema_json: Jso
     # Update to latest pyrightconfig schema.
     pyrightconfig_contribution["schema"] = pyrightconfig_schema_json
     # Add ID.
-    pyrightconfig_contribution["schema"]["$id"] = PYRIGHTCONFIG_SCHEMA_ID
+    pyrightconfig_contribution["schema"]["$id"] = SCHEMA_ID
     # Update LSP settings to reference options from the pyrightconfig schema.
     # fmt: off
     settings_properties: JsonDict = lsp_pyright_contribution["schema"]["definitions"]["PluginConfig"]["properties"]["settings"]["properties"]  # noqa: E501
@@ -109,7 +109,7 @@ def update_schema(sublime_package_json: JsonDict, pyrightconfig_schema_json: Jso
 
 def update_property_ref(property_key: str, property_schema: JsonDict, *, relative: bool = False) -> None:
     property_schema.clear()
-    property_schema["$ref"] = f"{'' if relative else PYRIGHTCONFIG_SCHEMA_ID}#/definitions/{property_key}"
+    property_schema["$ref"] = f"{'' if relative else SCHEMA_ID}#/definitions/{property_key}"
 
 
 def create_all_property_definitions(schema_json: JsonDict) -> None:
