@@ -47,328 +47,328 @@
                       "description": "Allows a user to override the severity levels for individual diagnostics.",
                       "properties": {
                         "analyzeUnannotatedFunctions": {
-                          "$ref": "sublime://pyrightconfig#/definitions/analyzeUnannotatedFunctions"
+                          "$ref": "sublime://basedpyright#/definitions/analyzeUnannotatedFunctions"
                         },
                         "baselineFile": {
-                          "$ref": "sublime://pyrightconfig#/definitions/baselineFile"
+                          "$ref": "sublime://basedpyright#/definitions/baselineFile"
                         },
                         "deprecateTypingAliases": {
-                          "$ref": "sublime://pyrightconfig#/definitions/deprecateTypingAliases"
+                          "$ref": "sublime://basedpyright#/definitions/deprecateTypingAliases"
                         },
                         "disableBytesTypePromotions": {
-                          "$ref": "sublime://pyrightconfig#/definitions/disableBytesTypePromotions"
+                          "$ref": "sublime://basedpyright#/definitions/disableBytesTypePromotions"
                         },
                         "enableExperimentalFeatures": {
-                          "$ref": "sublime://pyrightconfig#/definitions/enableExperimentalFeatures"
+                          "$ref": "sublime://basedpyright#/definitions/enableExperimentalFeatures"
                         },
                         "enableReachabilityAnalysis": {
-                          "$ref": "sublime://pyrightconfig#/definitions/enableReachabilityAnalysis"
+                          "$ref": "sublime://basedpyright#/definitions/enableReachabilityAnalysis"
                         },
                         "enableTypeIgnoreComments": {
-                          "$ref": "sublime://pyrightconfig#/definitions/enableTypeIgnoreComments"
+                          "$ref": "sublime://basedpyright#/definitions/enableTypeIgnoreComments"
                         },
                         "reportAbstractUsage": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAbstractUsage"
+                          "$ref": "sublime://basedpyright#/definitions/reportAbstractUsage"
                         },
                         "reportAny": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAny"
+                          "$ref": "sublime://basedpyright#/definitions/reportAny"
                         },
                         "reportArgumentType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportArgumentType"
+                          "$ref": "sublime://basedpyright#/definitions/reportArgumentType"
                         },
                         "reportAssertAlwaysTrue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAssertAlwaysTrue"
+                          "$ref": "sublime://basedpyright#/definitions/reportAssertAlwaysTrue"
                         },
                         "reportAssertTypeFailure": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAssertTypeFailure"
+                          "$ref": "sublime://basedpyright#/definitions/reportAssertTypeFailure"
                         },
                         "reportAssignmentType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAssignmentType"
+                          "$ref": "sublime://basedpyright#/definitions/reportAssignmentType"
                         },
                         "reportAttributeAccessIssue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportAttributeAccessIssue"
+                          "$ref": "sublime://basedpyright#/definitions/reportAttributeAccessIssue"
                         },
                         "reportCallInDefaultInitializer": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportCallInDefaultInitializer"
+                          "$ref": "sublime://basedpyright#/definitions/reportCallInDefaultInitializer"
                         },
                         "reportCallIssue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportCallIssue"
+                          "$ref": "sublime://basedpyright#/definitions/reportCallIssue"
                         },
                         "reportConstantRedefinition": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportConstantRedefinition"
+                          "$ref": "sublime://basedpyright#/definitions/reportConstantRedefinition"
                         },
                         "reportDeprecated": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportDeprecated"
+                          "$ref": "sublime://basedpyright#/definitions/reportDeprecated"
                         },
                         "reportDuplicateImport": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportDuplicateImport"
+                          "$ref": "sublime://basedpyright#/definitions/reportDuplicateImport"
                         },
                         "reportExplicitAny": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportExplicitAny"
+                          "$ref": "sublime://basedpyright#/definitions/reportExplicitAny"
                         },
                         "reportFunctionMemberAccess": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportFunctionMemberAccess"
+                          "$ref": "sublime://basedpyright#/definitions/reportFunctionMemberAccess"
                         },
                         "reportGeneralTypeIssues": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportGeneralTypeIssues"
+                          "$ref": "sublime://basedpyright#/definitions/reportGeneralTypeIssues"
                         },
                         "reportIgnoreCommentWithoutRule": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIgnoreCommentWithoutRule"
+                          "$ref": "sublime://basedpyright#/definitions/reportIgnoreCommentWithoutRule"
                         },
                         "reportImplicitAbstractClass": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportImplicitAbstractClass"
+                          "$ref": "sublime://basedpyright#/definitions/reportImplicitAbstractClass"
                         },
                         "reportImplicitOverride": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportImplicitOverride"
+                          "$ref": "sublime://basedpyright#/definitions/reportImplicitOverride"
                         },
                         "reportImplicitRelativeImport": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportImplicitRelativeImport"
+                          "$ref": "sublime://basedpyright#/definitions/reportImplicitRelativeImport"
                         },
                         "reportImplicitStringConcatenation": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportImplicitStringConcatenation"
+                          "$ref": "sublime://basedpyright#/definitions/reportImplicitStringConcatenation"
                         },
                         "reportImportCycles": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportImportCycles"
+                          "$ref": "sublime://basedpyright#/definitions/reportImportCycles"
                         },
                         "reportIncompatibleMethodOverride": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleMethodOverride"
+                          "$ref": "sublime://basedpyright#/definitions/reportIncompatibleMethodOverride"
                         },
                         "reportIncompatibleUnannotatedOverride": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleUnannotatedOverride"
+                          "$ref": "sublime://basedpyright#/definitions/reportIncompatibleUnannotatedOverride"
                         },
                         "reportIncompatibleVariableOverride": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIncompatibleVariableOverride"
+                          "$ref": "sublime://basedpyright#/definitions/reportIncompatibleVariableOverride"
                         },
                         "reportIncompleteStub": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIncompleteStub"
+                          "$ref": "sublime://basedpyright#/definitions/reportIncompleteStub"
                         },
                         "reportInconsistentConstructor": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInconsistentConstructor"
+                          "$ref": "sublime://basedpyright#/definitions/reportInconsistentConstructor"
                         },
                         "reportInconsistentOverload": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInconsistentOverload"
+                          "$ref": "sublime://basedpyright#/definitions/reportInconsistentOverload"
                         },
                         "reportIndexIssue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportIndexIssue"
+                          "$ref": "sublime://basedpyright#/definitions/reportIndexIssue"
                         },
                         "reportInvalidAbstractMethod": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidAbstractMethod"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidAbstractMethod"
                         },
                         "reportInvalidCast": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidCast"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidCast"
                         },
                         "reportInvalidStringEscapeSequence": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidStringEscapeSequence"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidStringEscapeSequence"
                         },
                         "reportInvalidStubStatement": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidStubStatement"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidStubStatement"
                         },
                         "reportInvalidTypeArguments": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidTypeArguments"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidTypeArguments"
                         },
                         "reportInvalidTypeForm": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidTypeForm"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidTypeForm"
                         },
                         "reportInvalidTypeVarUse": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportInvalidTypeVarUse"
+                          "$ref": "sublime://basedpyright#/definitions/reportInvalidTypeVarUse"
                         },
                         "reportMatchNotExhaustive": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMatchNotExhaustive"
+                          "$ref": "sublime://basedpyright#/definitions/reportMatchNotExhaustive"
                         },
                         "reportMissingImports": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingImports"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingImports"
                         },
                         "reportMissingModuleSource": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingModuleSource"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingModuleSource"
                         },
                         "reportMissingParameterType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingParameterType"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingParameterType"
                         },
                         "reportMissingSuperCall": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingSuperCall"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingSuperCall"
                         },
                         "reportMissingTypeArgument": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingTypeArgument"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingTypeArgument"
                         },
                         "reportMissingTypeStubs": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportMissingTypeStubs"
+                          "$ref": "sublime://basedpyright#/definitions/reportMissingTypeStubs"
                         },
                         "reportNoOverloadImplementation": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportNoOverloadImplementation"
+                          "$ref": "sublime://basedpyright#/definitions/reportNoOverloadImplementation"
                         },
                         "reportOperatorIssue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOperatorIssue"
+                          "$ref": "sublime://basedpyright#/definitions/reportOperatorIssue"
                         },
                         "reportOptionalCall": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalCall"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalCall"
                         },
                         "reportOptionalContextManager": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalContextManager"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalContextManager"
                         },
                         "reportOptionalIterable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalIterable"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalIterable"
                         },
                         "reportOptionalMemberAccess": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalMemberAccess"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalMemberAccess"
                         },
                         "reportOptionalOperand": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalOperand"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalOperand"
                         },
                         "reportOptionalSubscript": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOptionalSubscript"
+                          "$ref": "sublime://basedpyright#/definitions/reportOptionalSubscript"
                         },
                         "reportOverlappingOverload": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportOverlappingOverload"
+                          "$ref": "sublime://basedpyright#/definitions/reportOverlappingOverload"
                         },
                         "reportPossiblyUnboundVariable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportPossiblyUnboundVariable"
+                          "$ref": "sublime://basedpyright#/definitions/reportPossiblyUnboundVariable"
                         },
                         "reportPrivateImportUsage": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportPrivateImportUsage"
+                          "$ref": "sublime://basedpyright#/definitions/reportPrivateImportUsage"
                         },
                         "reportPrivateLocalImportUsage": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportPrivateLocalImportUsage"
+                          "$ref": "sublime://basedpyright#/definitions/reportPrivateLocalImportUsage"
                         },
                         "reportPrivateUsage": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportPrivateUsage"
+                          "$ref": "sublime://basedpyright#/definitions/reportPrivateUsage"
                         },
                         "reportPropertyTypeMismatch": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportPropertyTypeMismatch"
+                          "$ref": "sublime://basedpyright#/definitions/reportPropertyTypeMismatch"
                         },
                         "reportRedeclaration": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportRedeclaration"
+                          "$ref": "sublime://basedpyright#/definitions/reportRedeclaration"
                         },
                         "reportReturnType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportReturnType"
+                          "$ref": "sublime://basedpyright#/definitions/reportReturnType"
                         },
                         "reportSelfClsDefault": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportSelfClsDefault"
+                          "$ref": "sublime://basedpyright#/definitions/reportSelfClsDefault"
                         },
                         "reportSelfClsParameterName": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportSelfClsParameterName"
+                          "$ref": "sublime://basedpyright#/definitions/reportSelfClsParameterName"
                         },
                         "reportTypeCommentUsage": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportTypeCommentUsage"
+                          "$ref": "sublime://basedpyright#/definitions/reportTypeCommentUsage"
                         },
                         "reportTypedDictNotRequiredAccess": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportTypedDictNotRequiredAccess"
+                          "$ref": "sublime://basedpyright#/definitions/reportTypedDictNotRequiredAccess"
                         },
                         "reportUnannotatedClassAttribute": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnannotatedClassAttribute"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnannotatedClassAttribute"
                         },
                         "reportUnboundVariable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnboundVariable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnboundVariable"
                         },
                         "reportUndefinedVariable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUndefinedVariable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUndefinedVariable"
                         },
                         "reportUnhashable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnhashable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnhashable"
                         },
                         "reportUninitializedInstanceVariable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUninitializedInstanceVariable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUninitializedInstanceVariable"
                         },
                         "reportUnknownArgumentType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnknownArgumentType"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnknownArgumentType"
                         },
                         "reportUnknownLambdaType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnknownLambdaType"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnknownLambdaType"
                         },
                         "reportUnknownMemberType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnknownMemberType"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnknownMemberType"
                         },
                         "reportUnknownParameterType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnknownParameterType"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnknownParameterType"
                         },
                         "reportUnknownVariableType": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnknownVariableType"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnknownVariableType"
                         },
                         "reportUnnecessaryCast": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnnecessaryCast"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnnecessaryCast"
                         },
                         "reportUnnecessaryComparison": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnnecessaryComparison"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnnecessaryComparison"
                         },
                         "reportUnnecessaryContains": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnnecessaryContains"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnnecessaryContains"
                         },
                         "reportUnnecessaryIsInstance": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnnecessaryIsInstance"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnnecessaryIsInstance"
                         },
                         "reportUnnecessaryTypeIgnoreComment": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnnecessaryTypeIgnoreComment"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnnecessaryTypeIgnoreComment"
                         },
                         "reportUnreachable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnreachable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnreachable"
                         },
                         "reportUnsafeMultipleInheritance": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnsafeMultipleInheritance"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnsafeMultipleInheritance"
                         },
                         "reportUnsupportedDunderAll": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnsupportedDunderAll"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnsupportedDunderAll"
                         },
                         "reportUntypedBaseClass": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUntypedBaseClass"
+                          "$ref": "sublime://basedpyright#/definitions/reportUntypedBaseClass"
                         },
                         "reportUntypedClassDecorator": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUntypedClassDecorator"
+                          "$ref": "sublime://basedpyright#/definitions/reportUntypedClassDecorator"
                         },
                         "reportUntypedFunctionDecorator": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUntypedFunctionDecorator"
+                          "$ref": "sublime://basedpyright#/definitions/reportUntypedFunctionDecorator"
                         },
                         "reportUntypedNamedTuple": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUntypedNamedTuple"
+                          "$ref": "sublime://basedpyright#/definitions/reportUntypedNamedTuple"
                         },
                         "reportUnusedCallResult": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedCallResult"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedCallResult"
                         },
                         "reportUnusedClass": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedClass"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedClass"
                         },
                         "reportUnusedCoroutine": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedCoroutine"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedCoroutine"
                         },
                         "reportUnusedExcept": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedExcept"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedExcept"
                         },
                         "reportUnusedExpression": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedExpression"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedExpression"
                         },
                         "reportUnusedFunction": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedFunction"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedFunction"
                         },
                         "reportUnusedImport": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedImport"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedImport"
                         },
                         "reportUnusedParameter": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedParameter"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedParameter"
                         },
                         "reportUnusedVariable": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportUnusedVariable"
+                          "$ref": "sublime://basedpyright#/definitions/reportUnusedVariable"
                         },
                         "reportWildcardImportFromLibrary": {
-                          "$ref": "sublime://pyrightconfig#/definitions/reportWildcardImportFromLibrary"
+                          "$ref": "sublime://basedpyright#/definitions/reportWildcardImportFromLibrary"
                         },
                         "strictDictionaryInference": {
-                          "$ref": "sublime://pyrightconfig#/definitions/strictDictionaryInference"
+                          "$ref": "sublime://basedpyright#/definitions/strictDictionaryInference"
                         },
                         "strictGenericNarrowing": {
-                          "$ref": "sublime://pyrightconfig#/definitions/strictGenericNarrowing"
+                          "$ref": "sublime://basedpyright#/definitions/strictGenericNarrowing"
                         },
                         "strictListInference": {
-                          "$ref": "sublime://pyrightconfig#/definitions/strictListInference"
+                          "$ref": "sublime://basedpyright#/definitions/strictListInference"
                         },
                         "strictParameterNoneValue": {
-                          "$ref": "sublime://pyrightconfig#/definitions/strictParameterNoneValue"
+                          "$ref": "sublime://basedpyright#/definitions/strictParameterNoneValue"
                         },
                         "strictSetInference": {
-                          "$ref": "sublime://pyrightconfig#/definitions/strictSetInference"
+                          "$ref": "sublime://basedpyright#/definitions/strictSetInference"
                         }
                       },
                       "type": "object"
                     },
                     "basedpyright.analysis.extraPaths": {
-                      "$ref": "sublime://pyrightconfig#/definitions/extraPaths"
+                      "$ref": "sublime://basedpyright#/definitions/extraPaths"
                     },
                     "basedpyright.analysis.logLevel": {
                       "default": "Information",
@@ -382,10 +382,10 @@
                       "type": "string"
                     },
                     "basedpyright.analysis.stubPath": {
-                      "$ref": "sublime://pyrightconfig#/definitions/stubPath"
+                      "$ref": "sublime://basedpyright#/definitions/stubPath"
                     },
                     "basedpyright.analysis.typeCheckingMode": {
-                      "$ref": "sublime://pyrightconfig#/definitions/typeCheckingMode"
+                      "$ref": "sublime://basedpyright#/definitions/typeCheckingMode"
                     },
                     "basedpyright.analysis.typeshedPaths": {
                       "default": [],
@@ -396,7 +396,7 @@
                       "type": "array"
                     },
                     "basedpyright.analysis.useLibraryCodeForTypes": {
-                      "$ref": "sublime://pyrightconfig#/definitions/useLibraryCodeForTypes"
+                      "$ref": "sublime://basedpyright#/definitions/useLibraryCodeForTypes"
                     },
                     "basedpyright.dev_environment": {
                       "default": "",
@@ -446,7 +446,7 @@
                       "type": "string"
                     },
                     "python.venvPath": {
-                      "$ref": "sublime://pyrightconfig#/definitions/venvPath"
+                      "$ref": "sublime://basedpyright#/definitions/venvPath"
                     },
                     "statusText": {
                       "default": "{% set parts = [] %}{% if server_version %}{% do parts.append('v' + server_version) %}{% endif %}{% if venv %}{% do parts.append('venv: ' + venv.venv_prompt) %}{% do parts.append('py: ' + venv.python_version) %}{% do parts.append('by: ' + venv.finder_name) %}{% endif %}{{ parts|join('; ') }}",
@@ -498,7 +498,7 @@
           "/pyrightconfig.json"
         ],
         "schema": {
-          "$id": "sublime://pyrightconfig",
+          "$id": "sublime://basedpyright",
           "$schema": "http://json-schema.org/draft-07/schema#",
           "allowComments": true,
           "allowTrailingCommas": true,
