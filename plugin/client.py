@@ -85,7 +85,7 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
 
     @classmethod
     def markdown_language_id_to_st_syntax_map(cls) -> MarkdownLangMap | None:
-        return {"python": (("python", "py"), ("LSP-basedpyright/syntaxes/basedpyright",))}
+        return {"pyright_python": (("pyright_python",), ("LSP-basedpyright/syntaxes/basedpyright",))}
 
     def on_server_response_async(self, method: str, response: Response) -> None:
         if method == "textDocument/hover" and isinstance(response.result, dict):
@@ -163,6 +163,8 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
             raise RuntimeError(f'Failed to copy overwrite dirs from "{dir_src}" to "{dir_dst}".')
 
     def patch_markdown_content(self, content: str) -> str:
+        # the fenced code blocks are not valid Python hence we use a custom syntax
+        content = re.sub("```python(?=\n)", "```pyright_python", content)
         # Add another linebreak before horizontal rule following fenced code block
         content = re.sub("```\n---", "```\n\n---", content)
         # Add markup for some common field name conventions in function docstring
