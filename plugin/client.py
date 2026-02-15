@@ -28,7 +28,7 @@ class ViewEventListener(sublime_plugin.ViewEventListener):
         settings = self.view.settings()
 
         if settings.get("lsp_active"):
-            self.view.run_command('lsp_basedpyright_update_view_status_text')
+            self.view.run_command("lsp_basedpyright_update_view_status_text")
 
 
 @final
@@ -148,7 +148,7 @@ class LspBasedpyrightPlugin(NpmClientHandler):
             # When ST just starts, server session hasn't been created yet.
             # So `on_activated` can't add full information for the initial view and hence we handle it here.
             if active_view := sublime.active_window().active_view():
-                active_view.run_command('lsp_basedpyright_update_view_status_text')
+                active_view.run_command("lsp_basedpyright_update_view_status_text")
 
             # modify configuration for the venv
             site_packages_dir = str(venv_info.site_packages_dir)
