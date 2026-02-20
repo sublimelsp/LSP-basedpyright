@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import os
 import re
-from typing import Any, cast
+from collections import defaultdict
+from pathlib import Path
+from typing import Any, cast, final
 
 import jmespath
 import sublime
@@ -12,11 +14,12 @@ from LSP.plugin import DottedDict, MarkdownLangMap, Response
 from LSP.plugin.core.protocol import CompletionItem, Hover, SignatureHelp
 from lsp_utils import NpmClientHandler
 from sublime_lib import ResourcePath
+from typing_extensions import override
 
 from .constants import PACKAGE_NAME, SERVER_SETTING_DEV_ENVIRONMENT
 from .dev_environment.helpers import get_dev_environment_handler
 from .log import log_error, log_warning
-from .utils_lsp import AbstractLspPythonPlugin, find_workspace_folder, update_view_status_bar_text, uri_to_file_path
+from .utils_lsp import WorkspaceFolderAttr, find_workspace_folder, uri_to_file_path
 from .virtual_env.helpers import find_venv_by_finder_names
 
 
@@ -25,14 +28,20 @@ class ViewEventListener(sublime_plugin.ViewEventListener):
         settings = self.view.settings()
 
         if settings.get("lsp_active"):
-            update_view_status_bar_text(LspBasedpyrightPlugin, self.view)
+            self.view.run_command("lsp_basedpyright_update_view_status_text")
 
 
-class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
+@final
+class LspBasedpyrightPlugin(NpmClientHandler):
     package_name = PACKAGE_NAME
     server_directory = "language-server"
     server_binary_path = os.path.join(server_directory, "node_modules", "basedpyright", "langserver.index.js")
+    server_version: str = ""
+    """The version of the language server."""
+    wf_attrs: defaultdict[Path, WorkspaceFolderAttr] = defaultdict(WorkspaceFolderAttr)
+    """Per workspace folder attributes."""
 
+    @override
     @classmethod
     def required_node_version(cls) -> str:
         """
@@ -41,6 +50,7 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
         """
         return ">=14.18.0"
 
+    @override
     @classmethod
     def should_ignore(cls, view: sublime.View) -> bool:
         return bool(
@@ -50,12 +60,14 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
             or os.path.basename(view.file_name() or "").startswith("syntax_test")
         )
 
+    @override
     @classmethod
     def setup(cls) -> None:
         super().setup()
 
         cls.server_version = cls.parse_server_version()
 
+    @override
     def on_settings_changed(self, settings: DottedDict) -> None:
         super().on_settings_changed(settings)
 
@@ -78,15 +90,18 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
         except Exception as ex:
             log_error(f'Failed to update extra paths for dev environment "{dev_environment}": {ex}')
 
+    @override
     @classmethod
     def install_or_update(cls) -> None:
         super().install_or_update()
         cls.copy_overwrite_dirs()
 
+    @override
     @classmethod
     def markdown_language_id_to_st_syntax_map(cls) -> MarkdownLangMap | None:
         return {"pyright_python": (("pyright_python",), ("LSP-basedpyright/syntaxes/basedpyright",))}
 
+    @override
     def on_server_response_async(self, method: str, response: Response) -> None:
         if method == "textDocument/hover" and isinstance(response.result, dict):
             hover = cast(Hover, response.result)
@@ -112,6 +127,7 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
                         documentation["value"] = self.patch_markdown_content(documentation["value"])
             return
 
+    @override
     def on_workspace_configuration(self, params: Any, configuration: dict[str, Any]) -> dict[str, Any]:
         if not ((session := self.weaksession()) and (params.get("section") == "python")):
             return configuration
@@ -132,7 +148,7 @@ class LspBasedpyrightPlugin(AbstractLspPythonPlugin, NpmClientHandler):
             # When ST just starts, server session hasn't been created yet.
             # So `on_activated` can't add full information for the initial view and hence we handle it here.
             if active_view := sublime.active_window().active_view():
-                update_view_status_bar_text(self.__class__, active_view)
+                active_view.run_command("lsp_basedpyright_update_view_status_text")
 
             # modify configuration for the venv
             site_packages_dir = str(venv_info.site_packages_dir)
