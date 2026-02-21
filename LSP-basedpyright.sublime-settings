@@ -117,9 +117,9 @@
 		"basedpyright.analysis.useTypingExtensions": false,
 		// Disables type completion, definitions, and references.
 		"basedpyright.disableLanguageServices": false,
-		// Disables the use of pull diagnostics.
-		"basedpyright.disableOrganizeImports": false,
 		// Disables the "Organize Imports" command.
+		"basedpyright.disableOrganizeImports": false,
+		// Disables the use of pull diagnostics.
 		"basedpyright.disablePullDiagnostics": false,
 		// Disable hint diagnostics with special hints for grayed-out or strike-through text.
 		"basedpyright.disableTaggedHints": false,
