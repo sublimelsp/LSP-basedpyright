@@ -1,0 +1,77 @@
+{
+    "merge": {
+        "basedpyright.dev_environment": {
+          "default": "",
+          "description": "Enables the pre-defined environment setup for specific developing needs.",
+          "enum": [
+            "",
+            "sublime_text",
+            "sublime_text_33",
+            "sublime_text_38",
+            "sublime_text_313",
+            "blender",
+            "gdb"
+          ],
+          "markdownEnumDescriptions": [
+            "No modifications applied.",
+            "Suitable for people who are developing ST python plugins. The Python version which the developed plugin runs on will be used. - `sys.path` from the plugin_host will be added into \"basedpyright.analysis.extraPaths\" so that ST package dependencies can be resolved by the LSP server.",
+            "Similar to \"sublime_text\" but Python 3.3 forced.",
+            "Similar to \"sublime_text\" but Python 3.8 forced.",
+            "Similar to \"sublime_text\" but Python 3.13 forced.",
+            "Suitable for people who are developing Blender add-ons. `sys.path` from Blender's embedded Python interpreter will be added into \"python.analysis.extraPaths\". Note that this requires invoking Blender, headless, to query the additional Python paths. The setting \"basedpyright.dev_environment_blender.binary\" controls which executable to call to invoke Blender.",
+            "Suitable for people who are developing GDB automation scripts. `sys.path` from GDB's embedded Python interpreter will be added into \"python.analysis.extraPaths\". Note that this requires invoking GDB, in batch mode, to query the additional Python paths. The setting \"basedpyright.dev_environment_gdb.binary\" controls which exectuable to call to invoke GDB."
+          ]
+        },
+        "basedpyright.dev_environment_blender.binary": {
+          "default": "blender",
+          "description": "When the predefined setup is \"blender\", invoke this binary to query the additional search paths.",
+          "type": "string"
+        },
+        "basedpyright.dev_environment_gdb.binary": {
+          "default": "gdb",
+          "description": "When the predefined setup is \"gdb\", invoke this binary to query the additional search paths.",
+          "type": "string"
+        },
+        "python.venvPath": {
+          "$ref": "sublime://basedpyright#/definitions/venvPath"
+        },
+        "statusText": {
+          "default": "{% set parts = [] %}{% if server_version %}{% do parts.append('v' + server_version) %}{% endif %}{% if venv %}{% do parts.append('venv: ' + venv.venv_prompt) %}{% do parts.append('py: ' + venv.python_version) %}{% do parts.append('by: ' + venv.finder_name) %}{% endif %}{{ parts|join('; ') }}",
+          "markdownDescription": "The (Jinja2) template of the status bar text which is inside the parentheses `(...)`. See https://jinja.palletsprojects.com/templates/",
+          "type": "string"
+        },
+        "venvStrategies": {
+          "default": [],
+          "description": "The strategies used to find a virtual environment in order.",
+          "items": {
+            "enum": [
+              "any_subdirectory",
+              "env_var_conda_prefix",
+              "env_var_virtual_env",
+              "hatch",
+              "local_dot_venv",
+              "pdm",
+              "pipenv",
+              "poetry",
+              "pyenv",
+              "rye",
+              "st_project_data"
+            ],
+            "markdownEnumDescriptions": [
+              "Finds the virtual environment with any subdirectory.",
+              "Finds the virtual environment using the `CONDA_PREFIX` environment variable.",
+              "Finds the virtual environment using the `VIRTUAL_ENV` environment variable.",
+              "Finds the virtual environment using `hatch`.",
+              "Finds the virtual environment `.venv` or `venv` directory.",
+              "Finds the virtual environment using `pdm`.",
+              "Finds the virtual environment using `pipenv`.",
+              "Finds the virtual environment using `poetry`.",
+              "Finds the virtual environment using `pyenv`.",
+              "Finds the virtual environment using `rye`.",
+              "Finds the virtual environment using Sublime Text project data."
+            ]
+          },
+          "type": "array"
+        }
+    }
+}

@@ -21,6 +21,11 @@
                 "settings": {
                   "additionalProperties": false,
                   "properties": {
+                    "basedpyright.analysis.autoFormatStrings": {
+                      "default": true,
+                      "markdownDescription": "Whether to automatically insert an `f` in front of a string when typing a `{` inside it.",
+                      "type": "boolean"
+                    },
                     "basedpyright.analysis.autoImportCompletions": {
                       "default": true,
                       "description": "Offer auto-import completions.",
@@ -30,6 +35,27 @@
                       "default": true,
                       "description": "Automatically add common search paths like 'src'?",
                       "type": "boolean"
+                    },
+                    "basedpyright.analysis.baselineFile": {
+                      "$ref": "sublime://basedpyright#/definitions/baselineFile"
+                    },
+                    "basedpyright.analysis.baselineMode": {
+                      "default": "auto",
+                      "enum": [
+                        "auto",
+                        "discard"
+                      ],
+                      "enumDescriptions": [
+                        "Automatically update the baseline file when baselined errors are fixed.",
+                        "Never update the baseline file automatically."
+                      ],
+                      "markdownDescription": "Controls how the baseline file is updated when files are saved.",
+                      "type": "string"
+                    },
+                    "basedpyright.analysis.configFilePath": {
+                      "default": "",
+                      "markdownDescription": "Path to the directory or file containing the Pyright configuration (`pyrightconfig.json` or `pyproject.toml`). If a directory is specified, basedpyright will search for the config file in that directory. This is useful for monorepo structures where the config file is in a subdirectory. Example: `${workspaceFolder}/backend`",
+                      "type": "string"
                     },
                     "basedpyright.analysis.diagnosticMode": {
                       "default": "openFilesOnly",
@@ -44,29 +70,8 @@
                       "type": "string"
                     },
                     "basedpyright.analysis.diagnosticSeverityOverrides": {
-                      "description": "Allows a user to override the severity levels for individual diagnostics.",
+                      "markdownDescription": "Allows a user to override the severity levels for individual diagnostics. Use the rule name as a key and one of \"error\", \"warning\", \"information\", \"none\", `true` (alias for \"error\") or `false` (alias for \"none\") as value. The default value shown for each diagnostic is the default when \"basedpyright.analysis.typeCheckingMode\" is set to \"standard\". See [here](https://docs.basedpyright.com/latest/configuration/config-files/#diagnostic-settings-defaults) for defaults for each type checking mode (\"off\", \"basic\", \"standard\", \"strict\", and \"all\").",
                       "properties": {
-                        "analyzeUnannotatedFunctions": {
-                          "$ref": "sublime://basedpyright#/definitions/analyzeUnannotatedFunctions"
-                        },
-                        "baselineFile": {
-                          "$ref": "sublime://basedpyright#/definitions/baselineFile"
-                        },
-                        "deprecateTypingAliases": {
-                          "$ref": "sublime://basedpyright#/definitions/deprecateTypingAliases"
-                        },
-                        "disableBytesTypePromotions": {
-                          "$ref": "sublime://basedpyright#/definitions/disableBytesTypePromotions"
-                        },
-                        "enableExperimentalFeatures": {
-                          "$ref": "sublime://basedpyright#/definitions/enableExperimentalFeatures"
-                        },
-                        "enableReachabilityAnalysis": {
-                          "$ref": "sublime://basedpyright#/definitions/enableReachabilityAnalysis"
-                        },
-                        "enableTypeIgnoreComments": {
-                          "$ref": "sublime://basedpyright#/definitions/enableTypeIgnoreComments"
-                        },
                         "reportAbstractUsage": {
                           "$ref": "sublime://basedpyright#/definitions/reportAbstractUsage"
                         },
@@ -348,27 +353,51 @@
                         },
                         "reportWildcardImportFromLibrary": {
                           "$ref": "sublime://basedpyright#/definitions/reportWildcardImportFromLibrary"
-                        },
-                        "strictDictionaryInference": {
-                          "$ref": "sublime://basedpyright#/definitions/strictDictionaryInference"
-                        },
-                        "strictGenericNarrowing": {
-                          "$ref": "sublime://basedpyright#/definitions/strictGenericNarrowing"
-                        },
-                        "strictListInference": {
-                          "$ref": "sublime://basedpyright#/definitions/strictListInference"
-                        },
-                        "strictParameterNoneValue": {
-                          "$ref": "sublime://basedpyright#/definitions/strictParameterNoneValue"
-                        },
-                        "strictSetInference": {
-                          "$ref": "sublime://basedpyright#/definitions/strictSetInference"
                         }
                       },
                       "type": "object"
                     },
+                    "basedpyright.analysis.exclude": {
+                      "$ref": "sublime://basedpyright#/definitions/exclude"
+                    },
                     "basedpyright.analysis.extraPaths": {
                       "$ref": "sublime://basedpyright#/definitions/extraPaths"
+                    },
+                    "basedpyright.analysis.fileEnumerationTimeout": {
+                      "default": 10,
+                      "description": "Timeout (in seconds) for file enumeration operations. Default is 10 seconds.",
+                      "type": "integer"
+                    },
+                    "basedpyright.analysis.ignore": {
+                      "$ref": "sublime://basedpyright#/definitions/ignore"
+                    },
+                    "basedpyright.analysis.include": {
+                      "$ref": "sublime://basedpyright#/definitions/include"
+                    },
+                    "basedpyright.analysis.inlayHints.callArgumentNames": {
+                      "default": true,
+                      "description": "Whether to show inlay hints on function arguments.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.inlayHints.callArgumentNamesMatching": {
+                      "default": false,
+                      "description": "Whether to show inlay hints on function arguments when the input expression is a variable with the same name as the parameter.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.inlayHints.functionReturnTypes": {
+                      "default": true,
+                      "description": "Whether to show inlay hints on function return types.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.inlayHints.genericTypes": {
+                      "default": true,
+                      "description": "Whether to show inlay hints on inferred generic types.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.analysis.inlayHints.variableTypes": {
+                      "default": true,
+                      "description": "Whether to show inlay hints on assignments to variables.",
+                      "type": "boolean"
                     },
                     "basedpyright.analysis.logLevel": {
                       "default": "Information",
@@ -397,6 +426,11 @@
                     },
                     "basedpyright.analysis.useLibraryCodeForTypes": {
                       "$ref": "sublime://basedpyright#/definitions/useLibraryCodeForTypes"
+                    },
+                    "basedpyright.analysis.useTypingExtensions": {
+                      "default": false,
+                      "markdownDescription": "Whether to rely on imports from the `typing_extensions` module when targeting older versions of python that do not include certain typing features such as the `@override` decorator.",
+                      "type": "boolean"
                     },
                     "basedpyright.dev_environment": {
                       "default": "",
@@ -437,8 +471,27 @@
                     },
                     "basedpyright.disableOrganizeImports": {
                       "default": false,
-                      "description": "Disables the \"Organize Imports\" command.",
+                      "description": "Disables the “Organize Imports” command.",
                       "type": "boolean"
+                    },
+                    "basedpyright.disablePullDiagnostics": {
+                      "default": false,
+                      "description": "Disables the use of pull diagnostics from VS Code.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.disableTaggedHints": {
+                      "default": false,
+                      "description": "Disable hint diagnostics with special hints for grayed-out or strike-through text.",
+                      "type": "boolean"
+                    },
+                    "basedpyright.importStrategy": {
+                      "default": "fromEnvironment",
+                      "description": "Whether to use the version of pyright installed in the project (recommended) or the one bundled with the extension (not recommended).",
+                      "enum": [
+                        "fromEnvironment",
+                        "useBundled"
+                      ],
+                      "type": "string"
                     },
                     "python.pythonPath": {
                       "default": "python",
