@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, Dict, cast
 from urllib.request import urlopen
@@ -24,8 +25,8 @@ JsonDict = Dict[str, Any]
 def main() -> None:
     pyrightconfig_schema, extension_configuration, sublime_package_schema = read_schemas()
     before = serialize_json_object(sublime_package_schema)
-    update_schema(sublime_package_schema, pyrightconfig_schema, extension_configuration)
-    after = serialize_json_object(sublime_package_schema)
+    new_sublime_package_schema = update_schema(sublime_package_schema, pyrightconfig_schema, extension_configuration)
+    after = serialize_json_object(new_sublime_package_schema)
     if before != after:
         SUBLIME_PACKAGE_JSON_PATH.write_text(f"{after}\n", encoding="utf-8")
         print("sublime-package.json schema updated.")
@@ -49,8 +50,9 @@ def serialize_json_object(obj: JsonDict) -> str:
 
 def update_schema(
     sublime_package_schema: JsonDict, pyrightconfig_schema: JsonDict, extension_configuration: JsonDict
-) -> None:
-    pyrightconfig_contribution, lsp_pyright_contribution = get_sublime_package_contributions(sublime_package_schema)
+) -> JsonDict:
+    new_sublime_package_schema: JsonDict = deepcopy(sublime_package_schema)
+    pyrightconfig_contribution, lsp_pyright_contribution = get_sublime_package_contributions(new_sublime_package_schema)
     # Update to latest pyrightconfig schema and add ID.
     pyrightconfig_contribution["schema"] = pyrightconfig_schema
     pyrightconfig_contribution["schema"]["$id"] = SCHEMA_ID
@@ -74,6 +76,7 @@ def update_schema(
     # fmt: off
     lsp_pyright_contribution["schema"]["definitions"]["PluginConfig"]["properties"]["settings"]["properties"] = lsp_settings  # noqa: E501
     # fmt: on
+    return new_sublime_package_schema
 
 
 def get_sublime_package_contributions(sublime_package_schema: JsonDict) -> tuple[JsonDict, JsonDict]:
