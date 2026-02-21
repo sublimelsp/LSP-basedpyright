@@ -2,21 +2,21 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Any
-from typing import cast
-from typing import Dict
-from urllib.request import urlopen
 import json
+from pathlib import Path
+from typing import Any, Dict, cast
+from urllib.request import urlopen
 
 PACKAGE_NAME = "LSP-basedpyright"
 
 PROJECT_ROOT = Path(__file__).parents[1]
 SCHEMA_ID = "sublime://basedpyright"
 PYRIGHT_CONFIGURATION_SCHEMA_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json"
-VSCODE_EXTENSION_PACKAGE_JSON_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/package.json"
+VSCODE_EXTENSION_PACKAGE_JSON_URL = (
+    "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/package.json"
+)
 SUBLIME_PACKAGE_JSON_PATH = PROJECT_ROOT / "sublime-package.json"
-UPDATE_SCHEMA_SETTINGS_PATH = PROJECT_ROOT / 'scripts' / 'update_schema_settings.json'
+UPDATE_SCHEMA_SETTINGS_PATH = PROJECT_ROOT / "scripts" / "update_schema_settings.json"
 
 JsonDict = Dict[str, Any]
 
@@ -38,7 +38,7 @@ def read_schemas() -> tuple[JsonDict, JsonDict, JsonDict]:
         pyrightconfig_schema: JsonDict = json.load(response)
     create_all_property_definitions(pyrightconfig_schema)
     with urlopen(VSCODE_EXTENSION_PACKAGE_JSON_URL) as response:
-        extension_configuration: JsonDict = json.load(response)['contributes']['configuration']['properties']
+        extension_configuration: JsonDict = json.load(response)["contributes"]["configuration"]["properties"]
     sublime_package_schema: JsonDict = json.loads(SUBLIME_PACKAGE_JSON_PATH.read_bytes())
     return (pyrightconfig_schema, extension_configuration, sublime_package_schema)
 
@@ -58,7 +58,7 @@ def update_schema(
     # Merge custom properties
     update_schema_settings: JsonDict = json.loads(UPDATE_SCHEMA_SETTINGS_PATH.read_bytes())
     cleanup_vscode_schema(extension_configuration)
-    lsp_settings: JsonDict = {**extension_configuration, **update_schema_settings['merge']}
+    lsp_settings: JsonDict = {**extension_configuration, **update_schema_settings["merge"]}
     # Update LSP settings to reference definitions from the pyrightconfig schema.
     pyrightconfig_definitions: JsonDict = pyrightconfig_contribution["schema"]["definitions"]
     for setting_key, setting_value in lsp_settings.items():
@@ -81,7 +81,7 @@ def get_sublime_package_contributions(sublime_package_schema: JsonDict) -> tuple
     try:
         return (
             next(c for c in settings if "/pyrightconfig.json" in c["file_patterns"]),
-            next(c for c in settings if f"/{PACKAGE_NAME}.sublime-settings" in c["file_patterns"])
+            next(c for c in settings if f"/{PACKAGE_NAME}.sublime-settings" in c["file_patterns"]),
         )
     except StopIteration:
         raise Exception("Expected contributions not found in sublime-package.json!")
