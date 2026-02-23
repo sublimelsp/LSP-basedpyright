@@ -52,14 +52,22 @@
 		"basedpyright.dev_environment_blender.binary": "blender",
 		// When the predefined setup is "gdb", invoke this binary to query the additional search paths.
 		"basedpyright.dev_environment_gdb.binary": "gdb",
+		// Whether to automatically insert an `f` in front of a string when typing a `{` inside it.
+		"basedpyright.analysis.autoFormatStrings": true,
 		// Offer auto-import completions.
 		"basedpyright.analysis.autoImportCompletions": true,
 		// Automatically add common search paths like 'src'?
 		"basedpyright.analysis.autoSearchPaths": true,
-		// Additional import search resolution paths
-		"basedpyright.analysis.extraPaths": [],
-		// Path to directory containing custom type stub files.
-		"basedpyright.analysis.stubPath": "./typings",
+		// Path to a baseline file that contains a list of diagnostics that should be ignored.
+		// Defaults to `./.basedpyright/baseline.json`
+		"basedpyright.analysis.baselineFile": "",
+		// Controls how the baseline file is updated when files are saved.
+		"basedpyright.analysis.configFilePath": "",
+		// Path to the directory or file containing the Pyright configuration (`pyrightconfig.json` or
+		// `pyproject.toml`). If a directory is specified, basedpyright will search for the config file in that
+		// directory. This is useful for monorepo structures where the config file is in a subdirectory.
+		// Example: `${workspaceFolder}/backend`
+		"basedpyright.analysis.baselineMode": "auto",
 		// "openFilesOnly" or "workspace"
 		"basedpyright.analysis.diagnosticMode": "openFilesOnly",
 		// Allows a user to override the severity levels for individual diagnostics.
@@ -73,6 +81,29 @@
 			// "reportUnusedImport": "information",
 			// "reportUnusedVariable": "information",
 		},
+		// Files and directories excluded from type analysis.
+		"basedpyright.analysis.exclude": [],
+		// Additional import search resolution paths
+		"basedpyright.analysis.extraPaths": [],
+		// Timeout (in seconds) for file enumeration operations. Default is 10 seconds.
+		"basedpyright.analysis.fileEnumerationTimeout": 10,
+		// Files and directories whose diagnostics are suppressed.
+		"basedpyright.analysis.ignore": [],
+		// Files and directories included in type analysis.
+		"basedpyright.analysis.include": [],
+		// Whether to show inlay hints on function arguments.
+		"basedpyright.analysis.inlayHints.callArgumentNames": true,
+		// Whether to show inlay hints on function arguments when the input expression is a variable with the same name
+		// as the parameter.
+		"basedpyright.analysis.inlayHints.callArgumentNamesMatching": false,
+		// Whether to show inlay hints on function return types.
+		"basedpyright.analysis.inlayHints.functionReturnTypes": true,
+		// Whether to show inlay hints on inferred generic types.
+		"basedpyright.analysis.inlayHints.genericTypes": true,
+		// Whether to show inlay hints on assignments to variables.
+		"basedpyright.analysis.inlayHints.variableTypes": true,
+		// Path to directory containing custom type stub files.
+		"basedpyright.analysis.stubPath": "./typings",
 		// Specifies the level of logging for the Output panel
 		"basedpyright.analysis.logLevel": "Information",
 		// Defines the default rule set for type checking.
@@ -81,10 +112,20 @@
 		"basedpyright.analysis.typeshedPaths": [],
 		// Use library implementations to extract type information when type stub is not present.
 		"basedpyright.analysis.useLibraryCodeForTypes": true,
+		// Whether to rely on imports from the `typing_extensions` module when targeting older versions of python that
+		// do not include certain typing features such as the `@override` decorator.
+		"basedpyright.analysis.useTypingExtensions": false,
 		// Disables type completion, definitions, and references.
 		"basedpyright.disableLanguageServices": false,
 		// Disables the "Organize Imports" command.
 		"basedpyright.disableOrganizeImports": false,
+		// Disables the use of pull diagnostics.
+		"basedpyright.disablePullDiagnostics": false,
+		// Disable hint diagnostics with special hints for grayed-out or strike-through text.
+		"basedpyright.disableTaggedHints": false,
+		// Whether to use the version of pyright installed in the project (recommended) or the one bundled with the
+		// extension (not recommended).
+		"basedpyright.importStrategy": "fromEnvironment",
 		// Path to Python. Leave empty to attempt automatic resolution.
 		"python.pythonPath": "",
 		// Path to folder with a list of Virtual Environments.
