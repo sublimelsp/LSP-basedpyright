@@ -10,8 +10,8 @@ from typing import Any, cast, final
 import jmespath
 import sublime
 import sublime_plugin
-from LSP.plugin import DottedDict, MarkdownLangMap, Response
-from LSP.plugin.core.protocol import CompletionItem, Hover, SignatureHelp
+from LSP.plugin import ClientConfig, DottedDict, MarkdownLangMap, Response
+from LSP.protocol import CompletionItem, Hover, SignatureHelp
 from lsp_utils import NpmClientHandler
 from sublime_lib import ResourcePath
 from typing_extensions import override
@@ -52,12 +52,11 @@ class LspBasedpyrightPlugin(NpmClientHandler):
 
     @override
     @classmethod
-    def should_ignore(cls, view: sublime.View) -> bool:
+    def is_applicable(cls, view: sublime.View, config: ClientConfig) -> bool:
         return bool(
-            # SublimeREPL views
-            view.settings().get("repl")
-            # syntax test files
-            or os.path.basename(view.file_name() or "").startswith("syntax_test")
+            super().is_applicable(view, config)
+            # REPL views (https://github.com/sublimelsp/LSP-pyright/issues/343)
+            and not view.settings().get("repl")
         )
 
     @override
@@ -102,7 +101,7 @@ class LspBasedpyrightPlugin(NpmClientHandler):
         return {"pyright_python": (("pyright_python",), ("LSP-basedpyright/syntaxes/basedpyright",))}
 
     @override
-    def on_server_response_async(self, method: str, response: Response) -> None:
+    def on_server_response_async(self, method: str, response: Response[Any]) -> None:
         if method == "textDocument/hover" and isinstance(response.result, dict):
             hover = cast(Hover, response.result)
             contents = hover.get("contents")
