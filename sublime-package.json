@@ -108,6 +108,9 @@
                         "reportDuplicateImport": {
                           "$ref": "sublime://basedpyright#/definitions/reportDuplicateImport"
                         },
+                        "reportEmptyAbstractUsage": {
+                          "$ref": "sublime://basedpyright#/definitions/reportEmptyAbstractUsage"
+                        },
                         "reportExplicitAny": {
                           "$ref": "sublime://basedpyright#/definitions/reportExplicitAny"
                         },
@@ -1088,6 +1091,11 @@
               "default": "none",
               "title": "Controls reporting of symbols or modules that are imported more than once"
             },
+            "reportEmptyAbstractUsage": {
+              "$ref": "#/definitions/diagnostic",
+              "default": "none",
+              "title": "Controls reporting of attempted instantiation of an empty abstract class"
+            },
             "reportExplicitAny": {
               "$ref": "#/definitions/diagnostic",
               "default": "none",
@@ -1671,6 +1679,9 @@
             },
             "reportDuplicateImport": {
               "$ref": "#/definitions/reportDuplicateImport"
+            },
+            "reportEmptyAbstractUsage": {
+              "$ref": "#/definitions/reportEmptyAbstractUsage"
             },
             "reportExplicitAny": {
               "$ref": "#/definitions/reportExplicitAny"
