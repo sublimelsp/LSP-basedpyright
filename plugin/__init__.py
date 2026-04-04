@@ -1,7 +1,9 @@
 from __future__ import annotations
 
-from .client import LspBasedpyrightPlugin, ViewEventListener
-from .commands import LspBasedpyrightCreateConfigurationCommand, LspBasedpyrightUpdateViewStatusTextCommand
+from .client import LspBasedpyrightPlugin
+from .client import ViewEventListener
+from .commands import LspBasedpyrightCreateConfigurationCommand
+from .commands import LspBasedpyrightUpdateViewStatusTextCommand
 
 __all__ = (
     # ST: core
