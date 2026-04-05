@@ -6,10 +6,10 @@ from typing import Generator, Sequence
 from more_itertools import first_true
 
 from .impl import (
-    VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS,
     BlenderDevEnvironmentHandler,
     GdbDevEnvironmentHandler,
     SublimeTextDevEnvironmentHandler,
+    VERSIONED_SUBLIME_TEXT_DEV_ENVIRONMENT_HANDLERS,
 )
 from .interfaces import BaseDevEnvironmentHandler
 
