@@ -7,7 +7,6 @@ from LSP.plugin import LspTextCommand
 from typing_extensions import override
 
 from ..client import LspBasedpyrightPlugin
-from ..constants import PACKAGE_NAME
 from ..log import log_warning
 from ..template import load_string_template
 from ..utils_lsp import find_workspace_folder
@@ -15,8 +14,6 @@ from ..utils_lsp import find_workspace_folder
 
 @final
 class LspBasedpyrightUpdateViewStatusTextCommand(LspTextCommand):
-    session_name = PACKAGE_NAME
-
     @override
     def run(self, edit: sublime.Edit) -> None:
         session = self.session_by_name()
