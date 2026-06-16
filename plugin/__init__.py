@@ -18,10 +18,11 @@ __all__ = (
 
 def plugin_loaded() -> None:
     """Executed when this plugin is loaded."""
-    LspBasedpyrightPlugin.setup()
+    LspBasedpyrightPlugin.register()
+    LspBasedpyrightPlugin.resolve_server_version()
 
 
 def plugin_unloaded() -> None:
     """Executed when this plugin is unloaded."""
     LspBasedpyrightPlugin.wf_attrs.clear()
-    LspBasedpyrightPlugin.cleanup()
+    LspBasedpyrightPlugin.unregister()
