@@ -152,8 +152,8 @@ class LspBasedpyrightPlugin(LspPlugin):
             if (
                 isinstance(result, dict)
                 and (
-                    item.get("section") == "basedpyright" and (analysisConfig := result["analysis"])
-                    or item.get("section") == "basedpyright.analysis" and (analysisConfig := result)
+                    (item.get("section") == "basedpyright" and (analysisConfig := result["analysis"]))
+                    or (item.get("section") == "basedpyright.analysis" and (analysisConfig := result))
                 )
                 and analysisConfig["stubPath"] == "typings"
             ):
