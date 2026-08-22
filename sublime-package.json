@@ -19,9 +19,9 @@
             "PluginConfig": {
               "properties": {
                 "server_path": {
-                  "type": "string",
                   "default": "auto",
-                  "markdownDescription": "The path to the server binary to use for starting the language server. Use `auto` for the package to manage (install/update) server automatically.\n\n> [!NOTE]\n> Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved based on this setting.\n\n> [!WARNING]\n> Using custom binary could result in package settings not matching what server supports."
+                  "markdownDescription": "The path to the server binary to use for starting the language server. Use `auto` for the package to manage (install/update) server automatically.\n\n> [!NOTE]\n> Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved based on this setting.\n\n> [!WARNING]\n> Using custom binary could result in package settings not matching what server supports.",
+                  "type": "string"
                 },
                 "settings": {
                   "additionalProperties": false,
@@ -564,6 +564,16 @@
           "allowComments": true,
           "allowTrailingCommas": true,
           "definitions": {
+            "allowedUntypedLibraries": {
+              "items": {
+                "default": [],
+                "pattern": "^(.*)$",
+                "title": "File or directory to include in type analysis",
+                "type": "string"
+              },
+              "title": "Suppress issues related to unknown types when functions and classes are imported from certain modules. This affects the rules `reportUnknownVariableType`, `reportUnknownMemberType`, and `reportMissingTypeStubs`. The option name should be a list of module names, for example, `[\"library\", \"module.submodule\"]`. By default, no modules are configured.",
+              "type": "array"
+            },
             "analyzeUnannotatedFunctions": {
               "default": true,
               "title": "Analyze and report diagnostics for functions that have no annotations",
@@ -1546,7 +1556,7 @@
               "type": "boolean"
             },
             "stubPath": {
-              "default": "typings",
+              "default": "./typings",
               "examples": [
                 "src/typestubs"
               ],
@@ -1601,6 +1611,9 @@
           },
           "description": "Pyright Configuration Schema",
           "properties": {
+            "allowedUntypedLibraries": {
+              "$ref": "#/definitions/allowedUntypedLibraries"
+            },
             "analyzeUnannotatedFunctions": {
               "$ref": "#/definitions/analyzeUnannotatedFunctions"
             },
