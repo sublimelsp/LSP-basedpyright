@@ -61,6 +61,9 @@ def update_schema(
     update_schema_settings: JsonDict = json.loads(UPDATE_SCHEMA_SETTINGS_PATH.read_bytes())
     cleanup_vscode_schema(extension_configuration)
     lsp_settings: JsonDict = {**extension_configuration, **update_schema_settings["merge"]}
+    # Remove unwanted keys.
+    remove_keys: list[str] = update_schema_settings.get("remove", [])
+    remove_schema_keys(pyrightconfig_contribution["schema"], lsp_settings, remove_keys)
     # Update LSP settings to reference definitions from the pyrightconfig schema.
     pyrightconfig_definitions: JsonDict = pyrightconfig_contribution["schema"]["definitions"]
     for setting_key, setting_value in lsp_settings.items():
@@ -77,6 +80,17 @@ def update_schema(
     lsp_pyright_contribution["schema"]["definitions"]["PluginConfig"]["properties"]["settings"]["properties"] = lsp_settings  # noqa: E501
     # fmt: on
     return new_sublime_package_schema
+
+
+def remove_schema_keys(pyrightconfig_schema: JsonDict, lsp_settings: JsonDict, remove_keys: list[str]) -> None:
+    """Remove the given keys from the pyrightconfig schema and from the LSP settings."""
+    for key in remove_keys:
+        # A definition is only removable together with the property that references it.
+        pyrightconfig_schema["properties"].pop(key, None)
+        pyrightconfig_schema["definitions"].pop(key, None)
+        # LSP settings keys are dotted, so match on the last dotted component too.
+        for setting_key in [k for k in lsp_settings if k == key or k.rpartition(".")[2] == key]:
+            del lsp_settings[setting_key]
 
 
 def get_sublime_package_contributions(sublime_package_schema: JsonDict) -> tuple[JsonDict, JsonDict]:

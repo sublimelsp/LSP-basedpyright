@@ -1,4 +1,7 @@
 {
+    "remove": [
+        "failOnWarnings"
+    ],
     "merge": {
         "basedpyright.dev_environment": {
           "default": "",

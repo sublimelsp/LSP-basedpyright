@@ -1010,11 +1010,6 @@
               "title": "Additional import search resolution paths",
               "type": "array"
             },
-            "failOnWarnings": {
-              "default": true,
-              "title": "Whether to exit with a non-zero exit code in the CLI if any \"warning\" diagnostics are reported. Has no effect on the language server. This is equivalent to the `--warnings` CLI argument.",
-              "type": "boolean"
-            },
             "ignore": {
               "items": {
                 "pattern": "^(.*)$",
@@ -1654,9 +1649,6 @@
             },
             "extraPaths": {
               "$ref": "#/definitions/extraPaths"
-            },
-            "failOnWarnings": {
-              "$ref": "#/definitions/failOnWarnings"
             },
             "ignore": {
               "$ref": "#/definitions/ignore"
