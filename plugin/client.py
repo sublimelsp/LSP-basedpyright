@@ -155,7 +155,7 @@ class LspBasedpyrightPlugin(LspPlugin):
                     (item.get("section") == "basedpyright" and (analysisConfig := result["analysis"]))
                     or (item.get("section") == "basedpyright.analysis" and (analysisConfig := result))
                 )
-                and analysisConfig["stubPath"] == "typings"
+                and analysisConfig["stubPath"] == "./typings"
             ):
                 del analysisConfig["stubPath"]
 

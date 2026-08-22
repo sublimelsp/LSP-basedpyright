@@ -105,7 +105,7 @@
 		// Whether to show inlay hints on assignments to variables.
 		"basedpyright.analysis.inlayHints.variableTypes": true,
 		// Path to directory containing custom type stub files.
-		"basedpyright.analysis.stubPath": "typings",
+		"basedpyright.analysis.stubPath": "./typings",
 		// Specifies the level of logging for the Output panel
 		"basedpyright.analysis.logLevel": "Information",
 		// Defines the default rule set for type checking.
