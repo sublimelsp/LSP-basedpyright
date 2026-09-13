@@ -64,6 +64,10 @@ class BaseVenvInfo(ABC):
         if os.name == "nt":
             return self.lib_dir / "site-packages"
         python_version = ".".join(self.python_version.split(".")[:2])
+        # Free-threaded CPython builds appends "t" to the Python version string, i.e. "python3.13t".
+        if (site_packages_dir_t := self.lib_dir / f"python{python_version}t/site-packages").is_dir():
+            return site_packages_dir_t
+        # For normal CPython builds, the Python version string is like "python3.13".
         return self.lib_dir / f"python{python_version}/site-packages"
 
     @property
