@@ -60,6 +60,7 @@ exclude = [
   "stubs",
   "syntaxes",
   "tests/files",
+  "tests/smoke",
   "typings",
   "vendor",
   "venv",
