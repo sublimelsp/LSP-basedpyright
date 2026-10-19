@@ -12,10 +12,11 @@ PACKAGE_NAME = "LSP-basedpyright"
 
 PROJECT_ROOT = Path(__file__).parents[1]
 SCHEMA_ID = "sublime://basedpyright"
-PYRIGHT_CONFIGURATION_SCHEMA_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json"
+PYRIGHT_CONFIGURATION_SCHEMA_URL = "https://raw.githubusercontent.com/DetachHead/basedpyright/v{version}/packages/vscode-pyright/schemas/pyrightconfig.schema.json"
 VSCODE_EXTENSION_PACKAGE_JSON_URL = (
-    "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/vscode-pyright/package.json"
+    "https://raw.githubusercontent.com/DetachHead/basedpyright/v{version}/packages/vscode-pyright/package.json"
 )
+SERVER_PACKAGE_JSON_PATH = PROJECT_ROOT / "language-server" / "package.json"
 SUBLIME_PACKAGE_JSON_PATH = PROJECT_ROOT / "sublime-package.json"
 UPDATE_SCHEMA_SETTINGS_PATH = PROJECT_ROOT / "scripts" / "update_schema_settings.json"
 
@@ -35,10 +36,12 @@ def main() -> None:
 
 
 def read_schemas() -> tuple[JsonDict, JsonDict, JsonDict]:
-    with urlopen(PYRIGHT_CONFIGURATION_SCHEMA_URL) as response:
+    basedpyright_version: str = json.loads(SERVER_PACKAGE_JSON_PATH.read_bytes())["dependencies"]["basedpyright"]
+    print(f"Using schemas from basedpyright {basedpyright_version}.")
+    with urlopen(PYRIGHT_CONFIGURATION_SCHEMA_URL.format(version=basedpyright_version)) as response:
         pyrightconfig_schema: JsonDict = json.load(response)
     create_all_property_definitions(pyrightconfig_schema)
-    with urlopen(VSCODE_EXTENSION_PACKAGE_JSON_URL) as response:
+    with urlopen(VSCODE_EXTENSION_PACKAGE_JSON_URL.format(version=basedpyright_version)) as response:
         extension_configuration: JsonDict = json.load(response)["contributes"]["configuration"]["properties"]
     sublime_package_schema: JsonDict = json.loads(SUBLIME_PACKAGE_JSON_PATH.read_bytes())
     return (pyrightconfig_schema, extension_configuration, sublime_package_schema)
