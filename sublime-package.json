@@ -564,16 +564,6 @@
           "allowComments": true,
           "allowTrailingCommas": true,
           "definitions": {
-            "allowedUntypedLibraries": {
-              "items": {
-                "default": [],
-                "pattern": "^(.*)$",
-                "title": "File or directory to include in type analysis",
-                "type": "string"
-              },
-              "title": "Suppress issues related to unknown types when functions and classes are imported from certain modules. This affects the rules `reportUnknownVariableType`, `reportUnknownMemberType`, and `reportMissingTypeStubs`. The option name should be a list of module names, for example, `[\"library\", \"module.submodule\"]`. By default, no modules are configured.",
-              "type": "array"
-            },
             "analyzeUnannotatedFunctions": {
               "default": true,
               "title": "Analyze and report diagnostics for functions that have no annotations",
@@ -1611,9 +1601,6 @@
           },
           "description": "Pyright Configuration Schema",
           "properties": {
-            "allowedUntypedLibraries": {
-              "$ref": "#/definitions/allowedUntypedLibraries"
-            },
             "analyzeUnannotatedFunctions": {
               "$ref": "#/definitions/analyzeUnannotatedFunctions"
             },
