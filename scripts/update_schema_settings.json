@@ -3,6 +3,17 @@
         "failOnWarnings"
     ],
     "merge": {
+        "basedpyright.analysis.logLevel": {
+          "default": "Warning",
+          "description": "Specifies the level of logging for the Output panel",
+          "enum": [
+            "Error",
+            "Warning",
+            "Information",
+            "Trace"
+          ],
+          "type": "string"
+        },
         "basedpyright.dev_environment": {
           "default": "",
           "description": "Enables the pre-defined environment setup for specific developing needs.",
