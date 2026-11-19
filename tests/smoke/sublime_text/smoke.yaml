@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/sublimelsp/lsp_smoke_test/v1/smoke.schema.json
+# Checks that the Sublime Text API stubs are installed and used by the "sublime_text" dev environment.
+file: sample.py
+expected_diagnostics:
+  code: reportAssignmentType
+  message: 'Type "int" is not assignable to declared type "str"'
+settings:
+  LSP-basedpyright.sublime-settings:
+    settings:
+      basedpyright.dev_environment: sublime_text
